@@ -1,0 +1,32 @@
+#contact-info {
+  font-size: .8em;
+}
+
+.job {
+  background-color: #e9e5dc;
+  border-radius: 5px;
+  margin-top: 10px;
+  padding: 3px 3px 3px 10px;
+  vertical-align: top;
+}
+
+.job:hover {
+  text-shadow: 2px 2px cyan;
+}
+
+ul {
+  font-size: .8em;
+  margin-top: 0px;
+}
+
+h3 {
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+  padding-top: 0px;
+  margin-top: 0px;
+}
+
+.job ul li {
+
+  color: red;
+}
