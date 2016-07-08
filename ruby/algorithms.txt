@@ -1,0 +1,13 @@
+RELEASE 0: Robot riding elevator. 
+
+-Press button outside of elevator to call it. 
+-Until elevator arrives and doors open: 
+	-Wait facing elevator. 
+	-If elevator does not arrive within 10 minutes, take stairs.
+-Once elevator arrives, step inside and make a 180 degree turn as to face toward the elevator door.
+-On panel by the elevator door with numbered buttons, find the number that matches the floor number on the Address you’ve been given, and press that button. 
+-When elevator doors open check to see if floor listed by elevator door matches the floor number you selected. 
+	-If floor number does not match, stay inside elevator and wait until elevator moves and opens doors again. 
+	-If floor number matches, exit elevator.  
+ 
+  
