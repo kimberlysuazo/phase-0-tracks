@@ -1,4 +1,5 @@
-RELEASE 0: Robot riding elevator. 
+RELEASE 0: Riding an Elevator.
+ 
 
 -Press button outside of elevator to call it. 
 -Until elevator arrives and doors open: 
@@ -9,5 +10,28 @@ RELEASE 0: Robot riding elevator.
 -When elevator doors open check to see if floor listed by elevator door matches the floor number you selected. 
 	-If floor number does not match, stay inside elevator and wait until elevator moves and opens doors again. 
 	-If floor number matches, exit elevator.  
+
  
+RELEASE 1: Washing Hands  
+
+-Find sink with running water.
+-Open faucet and adjust water temperature 
+	-Adjust temperature until it is a comfortable temperature to your hands and proceed to wet hands.  
+	-If can’t adjust temperature, test to make sure water is not too hot. 
+		-If water is too hot and burns, find another sink. 
+		-If water is not too hot, proceed to wet hands. 
+-Apply small amount of soap to hands.
+-Lather and scrub. For a duration of 20 seconds alternate between: 
+	-Rubbing hands together palm to palm.
+	-Rubbing left palm over right hand. 
+	-Rubbing right palm over left hand.   
+	-Washing in between fingers. 
+	-Washing under finger nails. 
+-Rinse hands under water until all soap is gone. 
+-Check hands to make sure they look clean. 
+	-If they do not look clean, repeat lather and scrub process. 
+	-If they look clean, dry your hands with disposable towel. 
+-Use disposable towel to turn off faucet. 
+	
+
   
