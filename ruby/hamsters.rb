@@ -18,9 +18,18 @@ end
 
 
 puts "What is your hamster's estimated age?"
-age = gets.chomp.to_f
+age = gets.chomp
 
-if age == ""
-  age = nil 
-end 
-  
+  if age == ""
+    age = nil 
+  else
+    age = age.to_f
+  end
+ 
+puts "The hamster name is: #{hamster_name}"
+puts "The hamster's volume level is : #{volume_level}"
+puts "The hamster's fur color is: #{fur_color}"
+puts "Hamster is a good candidate for adoption: #{adoption_cadidate}"
+puts "Hamster's age is: #{age}"
+
+
