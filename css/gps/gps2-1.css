@@ -1,6 +1,57 @@
-/*
-Testing link to html
-*/
-h1 {
-  color: blue;
+
+header {
+  display: block;
+  background-color: #404040;
+  width: 100%;
+  color: white;
+  margin-top: -15px;
+  padding: 0px 5px;
+}
+
+
+.column-1 {
+  display: inline-block;
+  width: 49%;
+  vertical-align: top;
+  color: #404040;
+}
+
+.column-2 {
+  display: inline-block;
+  width: 49%;
+  vertical-align: top;
+  margin-left: 5px;
+  color: #404040;
+
+}
+section {
+  margin: auto;
+}
+footer {
+  display: block;
+  background-color: #404040;
+  width: 99%;
+  margin-top: 5px;
+  color: white;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  padding-left: 2px;
+}
+
+body {
+  margin: auto;
+  font-family: Arial;
+  background-color: white;
+}
+
+a {
+  color: #3377ff;
+}
+
+a:visited {
+  color: #9966ff;
+}
+
+header, footer {
+  background-color: pink;
 }
