@@ -3,12 +3,20 @@ current_year = 2016
 
 puts "What is your name?"
 name = gets.chomp
+if name == "Drake Cula"
+  name = false
+elsif name == "Tu Fang"
+  name = false
+else 
+  name = true
+end   
+  
 
 puts "How old are you?"
-age_given = gets.chomp
+age_given = gets.chomp.to_i
 
 puts "What year were you born?"
-birth_year = gets.chomp
+birth_year = gets.chomp.to_i
 
 actual_age = current_year - birth_year
 if actual_age == age_given
@@ -36,24 +44,32 @@ end
 
 
 
-case
-when (name) && ((correct_age) && (garlic_bread || health_insurance))
-  puts "Probably not a vampire."
 
-when (name) && ((!garlic_bread || !health_insurance) && (!correct_age))
-  puts "Probably a vampire."
+case 
+  when  (name) && ((correct_age) && (garlic_bread || health_insurance))
+    puts "Probably not a vampire."
+    vampire_check_complete = true
   
-when (name) && ((!correct_age) && (!garlic_bread && !health_insurance))
-  puts "Almost certainly a vampire."
+  when (name) && ((!garlic_bread || !health_insurance) && (!correct_age)) && !(!garlic_bread && !health_insurance)
+    puts "Probably a vampire."
+    vampire_check_complete = true
+    
+  when (name) && ((!correct_age) && (!garlic_bread && !health_insurance))
+    puts "Almost certainly a vampire."
+    vampire_check_complete = true
+  
+  when !name
+    puts "Definitely a vampire."
+    vampire_check_complete = true
+    
+  else
+    puts "Results inconclusive"
+    vampire_check_complete = true
+  end  
 
-when !name
-  puts "Definitely a vampire."
-  
-else 
-  puts "Results inconclusive" 
-end  
-  
-  
+
+
+
 
  
 
