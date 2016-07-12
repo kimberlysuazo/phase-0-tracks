@@ -48,23 +48,23 @@ end
 case 
   when  (name) && ((correct_age) && (garlic_bread || health_insurance))
     puts "Probably not a vampire."
-    vampire_check_complete = true
+    
   
   when (name) && ((!garlic_bread || !health_insurance) && (!correct_age)) && !(!garlic_bread && !health_insurance)
     puts "Probably a vampire."
-    vampire_check_complete = true
+    
     
   when (name) && ((!correct_age) && (!garlic_bread && !health_insurance))
     puts "Almost certainly a vampire."
-    vampire_check_complete = true
+    
   
   when !name
     puts "Definitely a vampire."
-    vampire_check_complete = true
+    
     
   else
     puts "Results inconclusive"
-    vampire_check_complete = true
+    
   end  
 
 
