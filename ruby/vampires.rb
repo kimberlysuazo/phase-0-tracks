@@ -6,11 +6,11 @@ puts "How many employees will you be processing?"
 #Use this while loop to ensure user inputs a valid number. 
 while true
      employees_to_process = gets.chomp.to_i
-          if employees_to_process > 0 && employees_to_process < 1000000
+           if employees_to_process != 0 
             break
           else 
-            puts "Please answer with a number between 0 and 1000000"
-          end    
+            puts "Please answer with a valid number."
+          end     
       end 
 
 #This while loop will repeat program until all employees have been processed. 
@@ -19,7 +19,7 @@ while employees_to_process > 0
 #VAMPIRE DETECTION QUESTIONS 
 
 #Set Boolean to inspect whether the name entered matches Tu Fang or Drake Cula. 
-    puts "What the applicant's name?"
+    puts "What's the applicant's name?"
     name = gets.chomp.downcase
         if name == "drake cula" || name == "tu fang"
           name = false
@@ -33,22 +33,22 @@ while employees_to_process > 0
 #Use this while loop to ensure user inputs a valid number.     
       while true
       age_given = gets.chomp.to_i
-          if age_given > 0 && age_given < 1000000
+          if age_given != 0 
             break
           else 
-            puts "Please answer with a number between 0 and 1000000"
-          end    
+            puts "Please answer with a valid number."
+          end 
       end 
           
     puts "What year were you born?"
 #Use this while loop to ensure user inputs a valid number.     
       while true
         birth_year = gets.chomp.to_i
-            if birth_year > 0 && birth_year < 1000000
-               break
-            else 
-               puts "Please answer with a number between 0 and 1000000"
-            end    
+            if birth_year != 0 
+            break
+          else 
+            puts "Please answer with a valid number."
+          end 
       end 
 
 current_year = 2016
@@ -94,7 +94,7 @@ current_year = 2016
 
 
 
-    puts "Please enter any allergies you may have. Type the name of the allergy followed by enter, until finished inputting allergies. When finished, type \"done\"."
+    puts "Please enter any allergies you may have. Type the name of the allergy followed by ENTER until finished inputting allergies. When finished, type \"done\"."
 #Use this while loop to ensure user can answer until typing done.
       
     while true
@@ -102,12 +102,12 @@ current_year = 2016
           if allergies == "done"
             break
 #VAMPIRE DETECTION LOGIC BEGINS           
-          elsif allergies == "sunshine"
+          elsif allergies == "sunshine" && name
             puts "Probably a vampire."
             break
           end  
     end       
-          if allergies != "sunshine"
+          if allergies != "sunshine" 
             case
               when  (name) && ((correct_age) && (garlic_bread || health_insurance))
                 puts "Probably not a vampire."
