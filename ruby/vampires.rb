@@ -3,6 +3,7 @@
 application_number = 0
 puts "How many employees will you be processing?"
 
+#Use this while loop to ensure user inputs a valid number. 
 while true
      employees_to_process = gets.chomp.to_i
           if employees_to_process > 0 && employees_to_process < 1000000
@@ -12,20 +13,24 @@ while true
           end    
       end 
 
+#This until loop will repeat program until all employees have been processed. 
 until application_number == employees_to_process
 
-    current_year = 2016
+#VAMPIRE DETECTION QUESTIONS 
 
+#Set Boolean to inspect whether the name entered matches Tu Fang or Drake Cula. 
     puts "What the applicant's name?"
     name = gets.chomp.downcase
         if name == "drake cula" || name == "tu fang"
           name = false
+#Setting a condition that sets either name as "Definitely a Vampire" here would stop the survey questions. 
+#I dont set that condition until all questions have been asked.   
         else 
           name = true
-        end   
-      
+        end       
 
     puts "How old are you?"
+#Use this while loop to ensure user inputs a valid number.     
       while true
       age_given = gets.chomp.to_i
           if age_given > 0 && age_given < 1000000
@@ -36,6 +41,7 @@ until application_number == employees_to_process
       end 
           
     puts "What year were you born?"
+#Use this while loop to ensure user inputs a valid number.     
       while true
         birth_year = gets.chomp.to_i
             if birth_year > 0 && birth_year < 1000000
@@ -45,6 +51,8 @@ until application_number == employees_to_process
             end    
       end 
 
+current_year = 2016
+#This calculates whether user gave the correct age
     actual_age = current_year - birth_year
         if actual_age == age_given
            correct_age = true 
@@ -55,6 +63,7 @@ until application_number == employees_to_process
    
       
     puts "Our cafeteria serves garlic bread. Should we order some for you (y/n)?"
+#Use this while loop to ensure user inputs a valid answer.     
        while true 
         garlic_bread = gets.chomp.downcase  
             if garlic_bread == "y"
@@ -67,7 +76,9 @@ until application_number == employees_to_process
               puts "Please answer with a \"y\" or a \"n\"."
             end   
         end
+
     puts "Would you like to enroll in the company's health insurance (y/n)?"
+#Use this while loop to ensure user inputs a valid answer.      
         while true 
          health_insurance = gets.chomp.downcase
             if health_insurance == "y"
@@ -84,11 +95,13 @@ until application_number == employees_to_process
 
 
     puts "Please enter any allergies you may have. Type the name of the allergy followed by enter, until finished inputting allergies. When finished, type \"done\"."
-    
+#Use this while loop to ensure user can answer until typing done.
+      
     while true
        allergies = gets.chomp.downcase
           if allergies == "done"
             break
+#VAMPIRE DETECTION LOGIC BEGINS           
           elsif allergies == "sunshine"
             puts "Probably a vampire."
             break
