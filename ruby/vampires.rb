@@ -2,8 +2,15 @@
 
 application_number = 0
 puts "How many employees will you be processing?"
-employees_to_process = gets.chomp.to_i
 
+while true
+     employees_to_process = gets.chomp.to_i
+          if employees_to_process > 0 && employees_to_process < 1000000
+            break
+          else 
+            puts "Please answer with a number between 0 and 1000000"
+          end    
+      end 
 
 until application_number == employees_to_process
 
@@ -113,7 +120,7 @@ until application_number == employees_to_process
             
 application_number += 1
 end 
-
+puts "Actually, never mind! What do these questions have to do with anything? Let's all be friends."
 
 
  
