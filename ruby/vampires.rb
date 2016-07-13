@@ -10,8 +10,8 @@ until application_number == employees_to_process
     current_year = 2016
 
     puts "What the applicant's name?"
-    name = gets.chomp
-        if name == "Drake Cula" || name == "Tu Fang"
+    name = gets.chomp.downcase
+        if name == "drake cula" || name == "tu fang"
           name = false
         else 
           name = true
@@ -19,10 +19,24 @@ until application_number == employees_to_process
       
 
     puts "How old are you?"
-    age_given = gets.chomp.to_i
-
+      while true
+      age_given = gets.chomp.to_i
+          if age_given > 0 && age_given < 1000000
+            break
+          else 
+            puts "Please answer with a number between 0 and 1000000"
+          end    
+      end 
+          
     puts "What year were you born?"
-    birth_year = gets.chomp.to_i
+      while true
+        birth_year = gets.chomp.to_i
+            if birth_year > 0 && birth_year < 1000000
+               break
+            else 
+               puts "Please answer with a number between 0 and 1000000"
+            end    
+      end 
 
     actual_age = current_year - birth_year
         if actual_age == age_given
@@ -30,45 +44,73 @@ until application_number == employees_to_process
         else 
           correct_age = false
         end   
-
+    
+   
+      
     puts "Our cafeteria serves garlic bread. Should we order some for you (y/n)?"
-    garlic_bread = gets.chomp
-        if garlic_bread == "y"
-          garlic_bread = true
-        else 
-          garlic_bread = false
-        end   
-
+       while true 
+        garlic_bread = gets.chomp.downcase  
+            if garlic_bread == "y"
+              garlic_bread = true
+              break
+            elsif garlic_bread == "n"
+              garlic_bread = false
+              break
+            else
+              puts "Please answer with a \"y\" or a \"n\"."
+            end   
+        end
     puts "Would you like to enroll in the company's health insurance (y/n)?"
-    health_insurance = gets.chomp
-        if health_insurance == "y"
-          health_insurance = true
-        else 
-          health_insurance = false
-        end     
+        while true 
+         health_insurance = gets.chomp.downcase
+            if health_insurance == "y"
+              health_insurance = true
+              break
+            elsif health_insurance == "n"
+              health_insurance = false
+              break
+            else
+              puts "Please answer with a \"y\" or a \"n\"."
+            end   
+        end 
 
 
-    case
-      when  (name) && ((correct_age) && (garlic_bread || health_insurance))
-        puts "Probably not a vampire."
-        
-      
-      when (name) && ((!garlic_bread || !health_insurance) && (!correct_age)) && !(!garlic_bread && !health_insurance)
-        puts "Probably a vampire."
-        
-        
-      when (name) && ((!correct_age) && (!garlic_bread && !health_insurance))
-        puts "Almost certainly a vampire."
-        
-      
-      when !name
-        puts "Definitely a vampire."
-        
-        
-      else
-        puts "Results inconclusive"
-        
-      end  
+
+    puts "Please enter any allergies you may have. Type the name of the allergy followed by enter, until finished inputting allergies. When finished, type \"done\"."
+    
+    while true
+       allergies = gets.chomp.downcase
+          if allergies == "done"
+            break
+          elsif allergies == "sunshine"
+            puts "Probably a vampire."
+            break
+          end  
+    end       
+          if allergies != "sunshine"
+            case
+              when  (name) && ((correct_age) && (garlic_bread || health_insurance))
+                puts "Probably not a vampire."
+                
+              
+              when (name) && ((!garlic_bread || !health_insurance) && (!correct_age)) && !(!garlic_bread && !health_insurance)
+                puts "Probably a vampire."
+                
+                
+              when (name) && ((!correct_age) && (!garlic_bread && !health_insurance))
+                puts "Almost certainly a vampire."
+                
+              
+              when !name
+                puts "Definitely a vampire."
+                
+                
+              else
+                puts "Results inconclusive"
+                
+            end  
+          end
+            
 application_number += 1
 end 
 
