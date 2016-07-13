@@ -9,11 +9,9 @@ until application_number == employees_to_process
 
     current_year = 2016
 
-    puts "What is your name?"
+    puts "What the applicant's name?"
     name = gets.chomp
-        if name == "Drake Cula"
-          name = false
-        elsif name == "Tu Fang"
+        if name == "Drake Cula" || name == "Tu Fang"
           name = false
         else 
           name = true
