@@ -1,6 +1,6 @@
 
 
-application_number = 0
+
 puts "How many employees will you be processing?"
 
 #Use this while loop to ensure user inputs a valid number. 
@@ -13,8 +13,8 @@ while true
           end    
       end 
 
-#This until loop will repeat program until all employees have been processed. 
-until application_number == employees_to_process
+#This while loop will repeat program until all employees have been processed. 
+while employees_to_process > 0 
 
 #VAMPIRE DETECTION QUESTIONS 
 
@@ -131,7 +131,7 @@ current_year = 2016
             end  
           end
             
-application_number += 1
+employees_to_process -= 1
 end 
 puts "Actually, never mind! What do these questions have to do with anything? Let's all be friends."
 
