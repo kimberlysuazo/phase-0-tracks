@@ -1,7 +1,4 @@
-
-
-
-puts "How many employees will you be processing?"
+puts "How many applications will you be filing?"
 
 #Use this while loop to ensure user inputs a valid number. 
 while true
@@ -96,19 +93,19 @@ current_year = 2016
 
     puts "Please enter any allergies you may have. Type the name of the allergy followed by ENTER until finished inputting allergies. When finished, type \"done\"."
 #Use this while loop to ensure user can answer until typing done.
-      
     while true
        allergies = gets.chomp.downcase
           if allergies == "done"
             break
-#VAMPIRE DETECTION LOGIC BEGINS           
-          elsif allergies == "sunshine" && name
-            puts "Probably a vampire."
-            break
           end  
-    end       
-          if allergies != "sunshine" 
+    end  
+    
+#VAMPIRE DETECTION LOGIC BEGINS           
+
             case
+              when allergies == "sunshine" && name
+                puts "Probably a vampire."
+              
               when  (name) && ((correct_age) && (garlic_bread || health_insurance))
                 puts "Probably not a vampire."
                 
@@ -129,19 +126,9 @@ current_year = 2016
                 puts "Results inconclusive"
                 
             end  
-          end
+     
             
 employees_to_process -= 1
 end 
 puts "Actually, never mind! What do these questions have to do with anything? Let's all be friends."
-
-
- 
-
-
-
-
-
-
-
 
