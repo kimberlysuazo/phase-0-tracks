@@ -1,12 +1,12 @@
 puts "How many applications will you be filing?"
-employees_to_process = gets.chomp
+employees_to_process = gets.chomp.to_i
 
 #This while loop will repeat program until all employees have been processed. 
 while employees_to_process > 0 
 
 #VAMPIRE DETECTION QUESTIONS 
   puts "What's the applicant's name?"
-  applicant_name = gets.chomp
+  applicant_name = gets.chomp.downcase
   
   #Set Boolean to inspect whether the name entered matches Tu Fang or Drake Cula. 
   #Set new name variable for use in detection logic.  
@@ -17,10 +17,10 @@ while employees_to_process > 0
   end
 
   puts "How old are you?"
-  age_given = gets.chomp
+  age_given = gets.chomp.to_i
 
   puts "What year were you born?"
-  birth_year = gets.chomp
+  birth_year = gets.chomp.to_i
 
   current_year = Time.new.year
   
@@ -67,33 +67,26 @@ while employees_to_process > 0
   end 
 
   puts "Please enter any allergies you may have. Type the name of the allergy followed by ENTER until finished inputting allergies. When finished, type \"done\"."
-  #Use this while loop to ensure user can answer until typing done.
-  
-  while true
-    allergies = gets.chomp.downcase
-
-    if allergies == "done"
-
-      # puts "IM FREEEEEEEEEEE"
-      break
-    end
-    
-    # puts "IM STILL IN THE LOOP!!!!!"
+  #Store answers in empty array. Use while loop to continue to store answers until "done". 
+  allergy_array = []
+  allergy = gets.chomp.downcase
+  while allergy != "done"
+    allergy = gets.chomp
+    allergy_array.push allergy
   end  
 
   #VAMPIRE DETECTION LOGIC BEGINS           
-
   case
     when !name
       puts "Definitely a vampire."
-    when (!correct_age) && (!garlic_bread && !health_insurance)
+    when !correct_age && (!garlic_bread && !health_insurance)
       puts "Almost certainly a vampire."    
-    when allergies == "sunshine"
+    when allergy_array.include?("sunshine")
       puts "Sunshine allergy- Probably a vampire."
-    when (correct_age) && (garlic_bread || health_insurance)
+    when correct_age && (garlic_bread || health_insurance)
       puts "Probably not a vampire."
-    when (name) && ((!garlic_bread || !health_insurance) && (!correct_age)) && !(!garlic_bread && !health_insurance)
-      puts "Probably a vampire, even though doesn't have sunshine allergy"
+    when !correct_age && (!garlic_bread || !health_insurance) 
+      puts "Probably a vampire, even though doesn't have a sunshine allergy"
     else
       puts "Results inconclusive"
   end
