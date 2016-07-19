@@ -1,3 +1,12 @@
+#RELEASE 0 
+def example
+  puts "Im gonna tell ya the secret password. (This is my status before running the block.)"
+  yield("bacon")
+end 
+
+example { |x| puts "The secret password is: '#{x}'. (This is my status after running the block.)"}
+
+
 #RELEASE 1
 
 #Declare Array
