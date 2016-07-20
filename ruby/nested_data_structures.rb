@@ -1,5 +1,5 @@
 
-
+#Nested data structure that represents a small shopping center
 
 mall = {
   floor_1: {
@@ -108,7 +108,16 @@ mall = {
 
 } 
 
- 
+#Edit Movie Theater Hash. Adds Theater 3. 
+mall[:floor_3][:movie_theater] = [
+            'Ticket Booth', 
+            'Concession Stand',
+            'Theater Room 1', 
+            'Theater Room 2',
+            'Theater Room 3'
+            ]
+p mall[:floor_3][:movie_theater]     
+  
 #Calls entire array under Best Buy key. 
 p mall[:floor_1][:best_buy] 
 #Calls Shirts
@@ -116,7 +125,7 @@ p mall[:floor_1][:old_navy][1]
 
 
 #Calls Theather Room 2
-p mall[:floor_3][:movie_theater][-1]
+p mall[:floor_3][:movie_theater][-2]
 
 #Calls Strawberry, the third milkshake listed under Chick-fil-A desserts. 
 p mall[:floor_2][:food_court][:chick_fil_a][:desserts][2][:Milkshakes][2]
@@ -133,10 +142,8 @@ p mall[:floor_1][:victorias_secret]
 mall[:floor_1][:victorias_secret].delete_at(2) 
 puts mall[:floor_1][:victorias_secret]
 
+#Prints the chicken Sandwiches in Chick-fil-A
 puts mall[:floor_2][:food_court][:burger_king][:chicken_sandwiches] 
 
-
+#prints Ticket Booth twice.
 2.times {puts mall[:floor_3][:movie_theater].first}
-
-puts "Inside the Old Navy, there's:" 
-puts mall[:floor_1][:old_navy] 
