@@ -71,10 +71,10 @@ mall = {
                   'Fruit Cup', 
                   'Side Salad'
                   ],
-              Desserts: [ 
+              desserts: [ 
                 'Chocolate Cookie', 
                 'Icedream',
-                'Milkshakes' => [ 
+                'Milkshakes': [ 
                   'Cookies and Cream',
                   'Peach',
                   'Strawberry',
@@ -108,15 +108,35 @@ mall = {
 
 } 
 
-
  
-
 #Calls entire array under Best Buy key. 
-p mall[:floor_1]['Best Buy'] 
+p mall[:floor_1][:best_buy] 
 #Calls Shirts
-p mall[:floor_1]['Old Navy'][1] 
-#Calls Theather Room 2
-p mall[:floor_3]['Movie Theater'][-1]
-#Calls Strawberry: the third milkshake listed under Chick-fil-A desserts. 
-p mall[:floor_2][:food_court][:chick_fil_a]['Desserts'][2]['Milkshakes'][2]
+p mall[:floor_1][:old_navy][1] 
 
+
+#Calls Theather Room 2
+p mall[:floor_3][:movie_theater][-1]
+
+#Calls Strawberry, the third milkshake listed under Chick-fil-A desserts. 
+p mall[:floor_2][:food_court][:chick_fil_a][:desserts][2][:Milkshakes][2]
+
+#Calls Pastries, first item in Starbucks food listings. 
+p mall[:floor_2][:food_court][:starbucks][:food].first
+
+#Add Chocolate to the Milkshakes in Chick-fil-A
+mall[:floor_2][:food_court][:chick_fil_a][:desserts][2][:Milkshakes] << 'Chocolate'
+p mall[:floor_2][:food_court][:chick_fil_a][:desserts][2][:Milkshakes]
+
+#Delete Pajamas from Victorias Secret. 
+p mall[:floor_1][:victorias_secret]
+mall[:floor_1][:victorias_secret].delete_at(2) 
+puts mall[:floor_1][:victorias_secret]
+
+puts mall[:floor_2][:food_court][:burger_king][:chicken_sandwiches] 
+
+
+2.times {puts mall[:floor_3][:movie_theater].first}
+
+puts "Inside the Old Navy, there's:" 
+puts mall[:floor_1][:old_navy] 
