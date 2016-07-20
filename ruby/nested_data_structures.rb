@@ -97,6 +97,14 @@ mall = {
               'Mirrors'
             ]
       }
+  },
+  floor_3: {
+      'Movie Theather' => [ 
+            'Ticket Booth', 
+            'Concession Stand',
+            'Theather Room 1', 
+            'Theater Room 2'
+            ]
   }
 
 } 
@@ -105,14 +113,7 @@ mall = {
 
 
 
-Floor 3: HASH
-  Movie theather (Key)=>
-    [ 
-    Ticket Booth 
-    Concession Stand
-    Theather Room 1 
-    Theater Room 2
-    ]
+
 
 Floor -1 : HASH
   parking lot (Key)=> cars 
