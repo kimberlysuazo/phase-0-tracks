@@ -19,55 +19,7 @@ pseudocode
 
 =end 
 
-puts "Question 1: What is your full name?"
-full_name = gets.chomp
-
-puts "Question 2: How old are you?"
-age_answer = gets.chomp.to_i
-
-puts "Question 3: How many children do you have?"
-children_answer = gets.chomp.to_i
-
-puts "Question 4: Is your living space 'open-concept' (i.e., the living room, dining and kitchen areas are not enclosed by walls)? Please answer \"yes\" or \"no\"."
-apt_style = gets.chomp.downcase
-has_open_concept = false
-if apt_style == "yes"
-  has_open_concept = true
-end   
-
-puts "Question 5: What is your preferred decor theme?"
-theme_answer = gets.chomp
-
-client_form = {
-  name: full_name,
-  age: age_answer,
-  children_amount: children_answer,
-  open_concept: has_open_concept,
-  decor_theme: theme_answer
-}
-
-p client_form
-
-puts "Would you like to update any of the answers? Please answer \"yes\" or \"no\"."
-update = gets.chomp
-
-if update == "yes"
-  puts "Please enter the number of the question you'd like to update (1 - 5)."
-  question_number = gets.chomp.to_i
-  puts "Please enter the corrected answer."
-  corrected_answer = gets.chomp
-end
-
-question_update = {:name => 1, :age => 2, :children_amount => 3, :open_concept => 4, :decor_theme => 5}
-
-
-client_form[question_update.key(question_number)] = corrected_answer
-
-p client_form
-
-
-ask_question(question_number)
-
+=begin
 def ask_question(n)
 case 
   when n == 1
@@ -97,5 +49,76 @@ ask_question(2)
 ask_question(3)
 ask_question(4)
 ask_question(5)
+
+client_form = {
+  name: $full_name,
+  age: $age_answer,
+  children_amount: $children_answer,
+  open_concept: $has_open_concept,
+  decor_theme: $theme_answer
+}
+
+p client_form
+
+puts "Would you like to update any of the answers? Please answer \"yes\" or \"no\"."
+update = gets.chomp
+
+if update == "yes"
+  puts "Please enter the number of the question you'd like to update (1 - 5)."
+  question_number = gets.chomp.to_i
+end
+
+ask_question(question_number)
+client_form[update - 1]
+p client_form
+
+client_form.update(hash){|key,v1| f(v1)}
+=end
+
+
+puts "Question 1: What is your full name?"
+full_name = gets.chomp
+
+puts "Question 2: How old are you?"
+age_answer = gets.chomp
+
+puts "Question 3: How many children do you have?"
+children_answer = gets.chomp
+
+puts "Question 4: Is your living space 'open-concept' (i.e., the living room, dining and kitchen areas are not enclosed by walls)? Please answer \"yes\" or \"no\"."
+has_open_concept = gets.chomp
+
+
+puts "Question 5: What is your preferred decor theme?"
+theme_answer = gets.chomp
+
+client_form = {
+  name: full_name,
+  age: age_answer,
+  children_amount: children_answer,
+  open_concept: has_open_concept,
+  decor_theme: theme_answer
+}
+
+p client_form
+
+puts "Would you like to update any of the answers? Please answer \"yes\" or \"no\"."
+update = gets.chomp
+
+if update == "yes"
+  puts "Please enter the number of the question you'd like to update (1 - 5)."
+  question_number = gets.chomp.to_i
+  puts "Please enter the corrected answer."
+  corrected_answer = gets.chomp
+end
+
+question_update = {:name => 1, :age => 2, :children_amount => 3, :open_concept => 4, :decor_theme => 5}
+
+client_form[question_update.key(question_number)] = corrected_answer
+
+puts client_form
+
+
+
 
 
