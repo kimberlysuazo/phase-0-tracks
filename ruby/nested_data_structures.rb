@@ -3,19 +3,19 @@
 
 mall = {
   floor_1: {
-      'Victorias Secret' => [
+      victorias_secret: [
         'Bras',
         'Panties',
         'Pajamas',
         'Perfumes',
         'Lotions'
         ],
-      'Best Buy' => [
+      best_buy: [
         'TVs',
         'Computers',
         'Cellphones'
         ],
-      'Old Navy' => [ 
+      old_navy: [ 
         'Pants',
         'Shirts',
         'Skirts',
@@ -26,16 +26,16 @@ mall = {
   floor_2: {
       food_court: {
           burger_king: {
-              'Burgers' => [
+              burgers: [
                   'Whopper',
                   'Whopper Jr' 
                   ],
-              'Chicken Sandwiches' => [
+              chicken_sandwiches: [
                   'Tendergrill Chicken Sandwich', 
                   'Original Chicken Sandwich', 
                   'Club Chicken Sandwich'
                   ],
-              'Side Items' => [
+              side_items: [
                   'Onion Rings',
                   'French Fries',
                   'Garden Salad'
@@ -47,32 +47,31 @@ mall = {
                   'Fruit'
                   ],  
           starbucks: {
-              'Furniture' => [
-                  'Chairs',
-                  'Tables',
-                  'Stools'
-                  ],
-              'Food' => [
+              drink_categories: [
                   'Coffee',
-                  'Milk',
-                  'Tea',
+                  'Frapuccino',
+                  'Lemonade',
+                  'Tea'
+                  ],
+              food: [
                   'Pastries',
-                  'Sandwiches'
+                  'Sandwiches', 
+                  'Pre-packaged Snacks'
                 ]
           },      
           chick_fil_a: {
-              'Classics' => [
+              Classics: [
                   'Chick-fil-A Nuggets',
                   'Chick-fil-A Chick-n-Strips',
                   'Chick-fil-A Chicken Sandwich'
                   ],
-              'Side Items' => [
+              side_items: [
                   'Chick-fil-A Waffles Fries',
                   'Chicken Soup',
                   'Fruit Cup', 
                   'Side Salad'
                   ],
-              'Desserts' => [ 
+              Desserts: [ 
                 'Chocolate Cookie', 
                 'Icedream',
                 'Milkshakes' => [ 
@@ -85,13 +84,13 @@ mall = {
           }        
       },  
       Restrooms: {
-          'Male' => [
+          male: [
               'Toilet Booths', 
               'Urinals',
               'Sinks',
               'Mirrors'
               ],
-          'Female' => [
+          female: [
               'Toilet Booths', 
               'Sinks',
               'Mirrors'
@@ -99,35 +98,25 @@ mall = {
       }
   },
   floor_3: {
-      'Movie Theather' => [ 
+      movie_theater: [ 
             'Ticket Booth', 
             'Concession Stand',
-            'Theather Room 1', 
+            'Theater Room 1', 
             'Theater Room 2'
             ]
   }
 
 } 
 
-=begin
 
-
-
-
-
-Floor -1 : HASH
-  parking lot (Key)=> cars 
-
-
-}
-=end 
  
-#p mall[:floor_1]['Best Buy'] 
-#p mall[:floor_1]['Old Navy'][1] 
 
+#Calls entire array under Best Buy key. 
+p mall[:floor_1]['Best Buy'] 
+#Calls Shirts
+p mall[:floor_1]['Old Navy'][1] 
+#Calls Theather Room 2
+p mall[:floor_3]['Movie Theater'][-1]
+#Calls Strawberry: the third milkshake listed under Chick-fil-A desserts. 
+p mall[:floor_2][:food_court][:chick_fil_a]['Desserts'][2]['Milkshakes'][2]
 
-=begin
-Once you've built it, print a few individual pieces of deeply nested data from the structure, 
-showing that you know how to use multiple indexes or hash keys (or both) to access nested items. 
-Try to demonstrate a few different types of access.
-=end 
