@@ -2,106 +2,107 @@
 
 
 mall = {
-  floor_1 = {
-      'Victorias Secret': [
+  floor_1: {
+      'Victorias Secret' => [
         'Bras',
         'Panties',
         'Pajamas',
         'Perfumes',
         'Lotions'
         ],
-      'Best Buy': [
+      'Best Buy' => [
         'TVs',
         'Computers',
         'Cellphones'
         ],
-      'Old Navy': [ 
+      'Old Navy' => [ 
         'Pants',
         'Shirts',
         'Skirts',
         'Dresses',
         'Flip-flops'
         ]
-  }   
-     
+  },   
+  floor_2: {
+      food_court: {
+          burger_king: {
+              'Burgers' => [
+                  'Whopper',
+                  'Whopper Jr' 
+                  ],
+              'Chicken Sandwiches' => [
+                  'Tendergrill Chicken Sandwich', 
+                  'Original Chicken Sandwich', 
+                  'Club Chicken Sandwich'
+                  ],
+              'Side Items' => [
+                  'Onion Rings',
+                  'French Fries',
+                  'Garden Salad'
+                  ] 
+          },        
+          jamba_juice: [
+                  'Smoothies',
+                  'Wheatgrass',
+                  'Fruit'
+                  ],  
+          starbucks: {
+              'Furniture' => [
+                  'Chairs',
+                  'Tables',
+                  'Stools'
+                  ],
+              'Food' => [
+                  'Coffee',
+                  'Milk',
+                  'Tea',
+                  'Pastries',
+                  'Sandwiches'
+                ]
+          },      
+          chick_fil_a: {
+              'Classics' => [
+                  'Chick-fil-A Nuggets',
+                  'Chick-fil-A Chick-n-Strips',
+                  'Chick-fil-A Chicken Sandwich'
+                  ],
+              'Side Items' => [
+                  'Chick-fil-A Waffles Fries',
+                  'Chicken Soup',
+                  'Fruit Cup', 
+                  'Side Salad'
+                  ],
+              'Desserts' => [ 
+                'Chocolate Cookie', 
+                'Icedream',
+                'Milkshakes' => [ 
+                  'Cookies and Cream',
+                  'Peach',
+                  'Strawberry',
+                  'Vanilla'
+                  ] 
+              ]    
+          }        
+      },  
+      Restrooms: {
+          'Male' => [
+              'Toilet Booths', 
+              'Urinals',
+              'Sinks',
+              'Mirrors'
+              ],
+          'Female' => [
+              'Toilet Booths', 
+              'Sinks',
+              'Mirrors'
+            ]
+      }
+  }
+
+} 
+
 =begin
-Floor 2: HASH
-  
-  Food court HASH
-    Burger King =HASH
-        Burgers: 
-            [
-            Whopper
-            Whopper Jr 
-            ]
-        Chicken Sandwiches:
-            [
-            Tendergrill chicken sandwich 
-            Original Chicken Sandwich 
-            Club Chicken Sandwich
-            ]
-        Side Items: 
-          [
-          Onion rings
-          French Fries
-          Garden Salad
-          ] 
 
-    Jamba Juice (key)
-      [
-      Smoothies
-      Wheatgrass
-      Fruit
-      ]
-    Starbucks =HASH
-        Furniture: (Key)
-          [
-          Chairs
-          Tables
-          Stools
-          ]
-        Food:
-          [Coffee
-          Milk
-          Tea
-          Pastries
-          Sandwiches]
-    Chick-Fil-A =HASH
-        Classics: (Key) 
-          [
-          Chick-fil-A Nuggets
-          Chick-fil-A Chick-n-Strips
-          Chick-fil-A Chicken Sandwich
-          ]
-        Side Items:
-          [
-          Chick-fil-A Waffles Fries
-          Chicken Soup
-          Fruit Cup 
-          Side Salad
-          ]
-        Desserts: 
-          Chocolate Cookie 
-          Icedream
-          Milkshakes: 
-            [
-            Cookies and Cream
-            Peach
-            Strawberry
-            Vanilla
-            ] 
-        
-
-  Restrooms HASH
-    Male: (Key)
-      [Toilet booths 
-      Urinals
-      Sinks
-      Mirrors]
-    Female: (Key)
-      [Toilet booths 
-      Sinks
-      Mirrors]
 
 
 Floor 3: HASH
@@ -119,7 +120,9 @@ Floor -1 : HASH
 
 }
 =end 
-
+ 
+#p mall[:floor_1]['Best Buy'] 
+#p mall[:floor_1]['Old Navy'][1] 
 
 
 =begin
