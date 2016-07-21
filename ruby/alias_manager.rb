@@ -31,21 +31,25 @@ def alias_maker (name)
     vowels= "aeioua"
     consonants = "bcdfghjklmnpqrstvwxyzb"
     new_first = []
-    n= 0
-    until n >= name.length
-      if name[n].match(/[aeiou]/)  
-          x = vowels.index(name[n])  + 1
-          z = vowels[x]
-          new_first.insert(n, z)
-      else   
-          k = consonants.index(name[n])  + 1
-          y = consonants[k]
-          new_first.insert(n, y)
-      end 
-      n += 1
+    
+
+
+
+  name.each_index do |n|
+    if name[n].match(/[aeiou]/
+      x = vowels.index(name[n])  + 1
+      z = vowels[x]
+      new_first.insert(n, z)
+    else   
+      k = consonants.index(name[n])  + 1
+      y = consonants[k]
+      new_first.insert(n, y)
     end 
-    new_name= new_first.join("").capitalize
-end   
+  end
+  new_name= new_first.join("").capitalize
+end
+
+
 
 #DRIVER CODE
 
