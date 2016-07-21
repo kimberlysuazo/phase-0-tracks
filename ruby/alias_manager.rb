@@ -1,16 +1,17 @@
+
 loop do 
-  puts "Please enter the full name (first and last) to change into an alias. When done type \"quit\"."
+  puts "Please enter the full name (first and last) to change into an alias. If done type \"quit\"."
   full_name= gets.chomp.downcase
   break if full_name == "quit" 
-   
+
   def alias_maker (full_name)
     
     vowels= "aeioua"
     consonants = "bcdfghjklmnpqrstvwxyzb"
 
     full = full_name.split(" ")
-    original_first_name = full[0].chars 
-    original_last_name = full[1].chars
+    original_first_name = full[0] 
+    original_last_name = full[1]
 
     new_first = []
     n= 0
@@ -48,8 +49,22 @@ loop do
 
 
     puts "Your new spy alias is: #{new_full_name}"
+    
   end 
 
   alias_maker(full_name)
 end 
 
+
+=begin
+create an array 
+"#{name_entered} is also known as #{alias_given}" 
+data_structure = {
+  new_last: new_full_name
+  } 
+
+
+
+urls = ["http://stackoverflow.com", "http://example.com", "http://foobar.com"]
+p res = urls.map{|url| {"url"=>url, "dns_status"=>200, "title"=>url[7..-5]} }
+=end 
