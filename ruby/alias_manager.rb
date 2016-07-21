@@ -1,6 +1,7 @@
 #PSEUDOCODE
 =begin
-- Create a method that cycles through the letters of the word entered checking if the letters are vowels or consonants.
+- Create a method that cycles through the letters of the word 
+and substitutes vowels to the next vowel and consonants to the next consonant. 
     
     - If letter are consonants, do same thing but going through consonants variable and using different variable names. 
     -create new_name which stores the new_first array joined into one string. Capitalize. 
@@ -35,10 +36,8 @@ end
 names_and_aliases = {}
 loop do 
   puts "Please enter the full name (First and Last) to change into an alias. If done type \"quit\"."
-  name_entered = gets.chomp 
-  #used separate variable for so that when printing the names_and_aliases hash, 
-  #the name entered is capitalized (or listed as entered, NOT #downcased).
-  full_name= name_entered.downcase
+  full_name = gets.chomp 
+  
   break if full_name == "quit" 
 
   full = full_name.split(" ")
@@ -47,7 +46,9 @@ loop do
 
   new_full_name = alias_maker(original_last_name) + " " + alias_maker(original_first_name)
   puts "Your new spy alias is: #{new_full_name}"
-  names_and_aliases[name_entered] = new_full_name
+  #Create original_capitalized variable so that the name entered prints nicely at then end. 
+  original_capitalized= original_first_name.capitalize + " " + original_last_name.capitalize
+  names_and_aliases[original_capitalized] = new_full_name
 end 
 
 names_and_aliases.each {|x,y| puts "#{x} is also known as: #{y}."}
