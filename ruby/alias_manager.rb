@@ -51,7 +51,7 @@ end
 
 names_and_aliases = {}
 loop do 
-  puts "Please enter the full name (first and last) to change into an alias. If done type \"quit\"."
+  puts "Please enter the full name (First and Last) to change into an alias. If done type \"quit\"."
   name_entered = gets.chomp 
   #used separate variable for so that when printing the names_and_aliases hash, 
   #the name entered is capitalized (or listed as entered, NOT #downcased).
