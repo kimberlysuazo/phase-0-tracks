@@ -21,7 +21,8 @@ end
 names_and_aliases = {}
 loop do 
   puts "Please enter the full name (first and last) to change into an alias. If done type \"quit\"."
-  full_name= gets.chomp.downcase
+  name_entered = gets.chomp
+  full_name= name_entered.downcase
   break if full_name == "quit" 
 
   full = full_name.split(" ")
@@ -30,8 +31,8 @@ loop do
 
   new_full_name = alias_maker(original_last_name) + " " + alias_maker(original_first_name)
   puts "Your new spy alias is: #{new_full_name}"
-  names_and_aliases[full_name] = new_full_name
+  names_and_aliases[name_entered] = new_full_name
 end 
 
-
+names_and_aliases.each {|x,y| puts "#{x} is also known as: #{y}."}
 
