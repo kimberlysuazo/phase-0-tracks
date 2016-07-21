@@ -1,27 +1,12 @@
-=begin
-Swapping the first and last name.
-Changing all of the vowels (a, e, i, o, or u) to the next vowel in 'aeiou', 
-and all of the consonants (everything else besides the vowels) to the next consonant in the alphabet. 
-So 'a' would become 'e', 'u' would become 'a', and 'd' would become 'f'.
-=end
 
-#PSEUDOCODE 
-=begin
--  
-
-Remember .upcase at the end. right before creating new array. 
-  
-=end
 def alias_maker 
-puts "Please type in the full name to change into an alias."
-full_name= gets.chomp.downcase
-   vowels= "aeioua"
+  puts "Please type in the full name to change into an alias."
+  full_name= gets.chomp.downcase
+  
+  vowels= "aeioua"
   consonants = "bcdfghjklmnpqrstvwxyzb"
 
-  #full_name = "kimberly suazo"
-  
   full = full_name.split(" ")
- 
   original_first_name = full[0].chars 
   original_last_name = full[1].chars
 
@@ -59,7 +44,9 @@ full_name= gets.chomp.downcase
   
   new_full_name = new_last.capitalize + " " + new_first.capitalize
 
-  puts new_full_name
+
+  puts "Your new spy alias is: #{new_full_name}"
 end 
 
 alias_maker()
+
