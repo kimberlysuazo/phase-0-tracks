@@ -17,25 +17,21 @@
 -print the names_and_aliases hash contents in list.      
 =end 
 
-#DEFINE METHOD
-
-
-
 def alias_maker (full_name)
   
-full = full_name.split(" ")
+  full = full_name.split(" ")
   original_first_name = full[0]
   original_last_name = full[1]
+  new_name = []
 
-new_name = []
- full.each_index do |x|
-y = full[x].gsub(/[a-z]/, 
-    "a"=>"e", 'b'=>"c", "c"=>"d", "d"=>"f", "e"=>"i", "f"=>"g", "g"=>"h", "h"=>"j", 'i'=>'o', 'j'=>'k', 
-    'k'=>'l', 'l'=>'m', 'm'=>'n', 'n'=>'p', 'o' =>'u', 'p'=>'q', 'q'=>'r', 'r'=>'s', 's'=>'t', 't'=>'v', 
-    'u' =>'a', 'v'=>'w', 'w'=>'x', 'x'=>'y', 'y'=>'z', 'z'=>'b').capitalize 
-new_name.unshift(y) 
-end 
-new_name.join(" ")
+  full.each_index do |x|
+    y = full[x].gsub(/[a-z]/, 
+        "a"=>"e", 'b'=>"c", "c"=>"d", "d"=>"f", "e"=>"i", "f"=>"g", "g"=>"h", "h"=>"j", 'i'=>'o', 'j'=>'k', 
+        'k'=>'l', 'l'=>'m', 'm'=>'n', 'n'=>'p', 'o' =>'u', 'p'=>'q', 'q'=>'r', 'r'=>'s', 's'=>'t', 't'=>'v', 
+        'u' =>'a', 'v'=>'w', 'w'=>'x', 'x'=>'y', 'y'=>'z', 'z'=>'b').capitalize 
+    new_name.unshift(y) 
+  end 
+  new_name.join(" ")
 end 
 
 #DRIVER CODE
