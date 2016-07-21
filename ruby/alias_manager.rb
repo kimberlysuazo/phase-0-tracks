@@ -1,15 +1,7 @@
 #PSEUDOCODE
 =begin
 - Create a method that cycles through the letters of the word entered checking if the letters are vowels or consonants.
-    -Create the following variables:
-      -vowels (listing vowels)
-      -consonants (listing consonants)
-      -new first (empty array) 
-    -If the letters are vowels, 
-        -match that letter to the index of variable listing vowels, and add 1. 
-        -store that index number in new variable x 
-        -Create new variable z which uses the [x] to call up the letter. 
-        -push values into new_first array using the .insert method. 
+    
     - If letter are consonants, do same thing but going through consonants variable and using different variable names. 
     -create new_name which stores the new_first array joined into one string. Capitalize. 
  -end method
@@ -28,28 +20,15 @@
 
 #DEFINE METHOD
 def alias_maker (name)
-    vowels= "aeioua"
-    consonants = "bcdfghjklmnpqrstvwxyzb"
-    new_first = []
     
+  name.chars.select {|v| v =~ /[a-z]/}.join("").gsub(/[a-z]/, 
+    "a"=>"e", 'b'=>"c", "c"=>"d", "d"=>"f", "e"=>"i", "f"=>"g", "g"=>"h", "h"=>"j", 'i'=>'o', 'j'=>'k', 
+    'k'=>'l', 'l'=>'m', 'm'=>'n', 'n'=>'p', 'o' =>'u', 'p'=>'q', 'q'=>'r', 'r'=>'s', 's'=>'t', 't'=>'v', 
+    'u' =>'a', 'v'=>'w', 'w'=>'x', 'x'=>'y', 'y'=>'z', 'z'=>'a').capitalize
 
-
-
-  name.each_index do |n|
-    if name[n].match(/[aeiou]/
-      x = vowels.index(name[n])  + 1
-      z = vowels[x]
-      new_first.insert(n, z)
-    else   
-      k = consonants.index(name[n])  + 1
-      y = consonants[k]
-      new_first.insert(n, y)
-    end 
-  end
-  new_name= new_first.join("").capitalize
-end
-
-
+ 
+#new_name
+end 
 
 #DRIVER CODE
 
@@ -63,7 +42,7 @@ loop do
   break if full_name == "quit" 
 
   full = full_name.split(" ")
-  original_first_name = full[0] 
+  original_first_name = full[0]
   original_last_name = full[1]
 
   new_full_name = alias_maker(original_last_name) + " " + alias_maker(original_first_name)
