@@ -1,11 +1,18 @@
 #PSEUDOCODE
 =begin
-- Create a method that takes in a name. 
+#METHOD
+- Create a method that takes in a full name. 
   -It splits that name into array of two, 
-  -It cycles through that array and for each word, substitutes vowels to the next vowel and consonants to the next consonant. 
-  -It then pushes that new word into first position of new_name array. Essentially, switching order. 
-  -It then makes that array into a string. 
+  -It cycles through each index of that array. For which: 
+    -It splits into an array of letters
+    -It cycles through each letter.
+      -If the letter is a vowel, it replaces with the next vowel. 
+      -If not, it replaces with the next consonant. 
+    -It then joins those letters into a word and capitalizes it. 
+  -It then pushes that new word into first position of new_first array. Essentially, switching order of words given. 
+  -Finally, it then makes that new_first array into a string. Creating a string with the new alias. 
 -end method
+#DRIVER CODE
 -Make empty hash to store future names and corresponding aliases. 
 -begin loop that goes on until user types "quit".
   -In loop, ask the user to type in a name. 
@@ -17,25 +24,24 @@
 -print the names_and_aliases hash contents in list.      
 =end 
 
-def alias_maker (full_name)
-  
-  full = full_name.split(" ")
-  original_first_name = full[0]
-  original_last_name = full[1]
-  new_name = []
+def alias_maker(full_name)
+  vowels= ["a", "e", "i", "o", "u", "a"]
+  consonants = ["b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z", "b"]  
 
-  full.each_index do |x|
-    y = full[x].gsub(/[a-z]/, 
-        "a"=>"e", 'b'=>"c", "c"=>"d", "d"=>"f", "e"=>"i", "f"=>"g", "g"=>"h", "h"=>"j", 'i'=>'o', 'j'=>'k', 
-        'k'=>'l', 'l'=>'m', 'm'=>'n', 'n'=>'p', 'o' =>'u', 'p'=>'q', 'q'=>'r', 'r'=>'s', 's'=>'t', 't'=>'v', 
-        'u' =>'a', 'v'=>'w', 'w'=>'x', 'x'=>'y', 'y'=>'z', 'z'=>'b').capitalize 
-    new_name.unshift(y) 
-  end 
-  new_name.join(" ")
+  full= full_name.split(" ")
+  new_first= []
+
+  full.each_index do |g|
+    y=  full[g].chars.map!{|letter| if vowels.find_index(letter) then letter = vowels[vowels.find_index(letter) + 1] 
+    else letter = consonants[consonants.find_index(letter) + 1] end}.join("").capitalize
+      
+    new_first.unshift(y)
+    end   
+  new_first.join(" ")  
 end 
 
-#DRIVER CODE
 
+#DRIVER CODE
 names_and_aliases = {}
 loop do 
   puts "Please enter the full name (First and Last) to change into an alias. If done type \"quit\"."
