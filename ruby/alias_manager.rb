@@ -19,60 +19,22 @@
 
 
 
-Full [z].each do /z/ 
- Full.chars.each do /x/
-If x= /[aeiou]/ { replace with specifics }
-Else x = d, h, n, t, z { replace with specifics}
-Else x =  rest of alphabet] {  replace with x.next }
+def alias_maker(full_name)
+  vowels= ["a", "e", "i", "o", "u", "a"]
+  consonants = ["b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z", "b"]  
 
-Full [1].chars.each.do 
+  full= full_name.split(" ")
+  new_first= []
 
-Push to array. 
-Y= array.join("")
-End 
-Push y to new array.unshift
-End 
-
-End 
-
-Firstname array
-
-Lastname array.
-
-Y = [  lastname.join +firstname.join].join 
-
-def alias_maker (name)
-  
-  full = full_name.split(" ")
-  original_first_name = full[0]
-  original_last_name = full[1]
-  new_name = []
-
-  
-name.each_index do |n|
-     if name[n].match(/[aeiou]/
-       x = vowels.index(name[n])  + 1
-       z = vowels[x]
-       new_first.insert(n, z)
-     else   
-       k = consonants.index(name[n])  + 1
-       y = consonants[k]
-       new_first.insert(n, y)
-      end 
-    q = new_first.join("").capitalize
-    new_name.unshift(q) 
- end       
-
-=begin
-    y = full[x].gsub(/[a-z]/, 
-        "a"=>"e", 'b'=>"c", "c"=>"d", "d"=>"f", "e"=>"i", "f"=>"g", "g"=>"h", "h"=>"j", 'i'=>'o', 'j'=>'k', 
-        'k'=>'l', 'l'=>'m', 'm'=>'n', 'n'=>'p', 'o' =>'u', 'p'=>'q', 'q'=>'r', 'r'=>'s', 's'=>'t', 't'=>'v', 
-        'u' =>'a', 'v'=>'w', 'w'=>'x', 'x'=>'y', 'y'=>'z', 'z'=>'b').capitalize 
-    new_name.unshift(y) 
-  end 
-=end   
-  new_name.join(" ")
+  full.each_index do |g|
+  y=  full[g].chars.map!{|letter| if vowels.find_index(letter) then letter = vowels[vowels.find_index(letter) + 1] 
+  else letter = consonants[consonants.find_index(letter) + 1] end}.join("").capitalize
+    
+  new_first.unshift(y)
+  end   
+  new_first.join(" ")  
 end 
+
 
 #DRIVER CODE
 
