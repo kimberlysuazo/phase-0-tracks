@@ -17,6 +17,30 @@
 -print the names_and_aliases hash contents in list.      
 =end 
 
+
+
+Full [z].each do /z/ 
+ Full.chars.each do /x/
+If x= /[aeiou]/ { replace with specifics }
+Else x = d, h, n, t, z { replace with specifics}
+Else x =  rest of alphabet] {  replace with x.next }
+
+Full [1].chars.each.do 
+
+Push to array. 
+Y= array.join("")
+End 
+Push y to new array.unshift
+End 
+
+End 
+
+Firstname array
+
+Lastname array.
+
+Y = [  lastname.join +firstname.join].join 
+
 def alias_maker (full_name)
   
   full = full_name.split(" ")
