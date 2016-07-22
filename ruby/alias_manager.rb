@@ -41,20 +41,36 @@ Lastname array.
 
 Y = [  lastname.join +firstname.join].join 
 
-def alias_maker (full_name)
+def alias_maker (name)
   
   full = full_name.split(" ")
   original_first_name = full[0]
   original_last_name = full[1]
   new_name = []
 
-  full.each_index do |x|
+  
+name.each_index do |n|
+     if name[n].match(/[aeiou]/
+       x = vowels.index(name[n])  + 1
+       z = vowels[x]
+       new_first.insert(n, z)
+     else   
+       k = consonants.index(name[n])  + 1
+       y = consonants[k]
+       new_first.insert(n, y)
+      end 
+    q = new_first.join("").capitalize
+    new_name.unshift(q) 
+ end       
+
+=begin
     y = full[x].gsub(/[a-z]/, 
         "a"=>"e", 'b'=>"c", "c"=>"d", "d"=>"f", "e"=>"i", "f"=>"g", "g"=>"h", "h"=>"j", 'i'=>'o', 'j'=>'k', 
         'k'=>'l', 'l'=>'m', 'm'=>'n', 'n'=>'p', 'o' =>'u', 'p'=>'q', 'q'=>'r', 'r'=>'s', 's'=>'t', 't'=>'v', 
         'u' =>'a', 'v'=>'w', 'w'=>'x', 'x'=>'y', 'y'=>'z', 'z'=>'b').capitalize 
     new_name.unshift(y) 
   end 
+=end   
   new_name.join(" ")
 end 
 
