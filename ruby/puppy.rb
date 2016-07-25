@@ -23,3 +23,15 @@ Run
 Likes to bury bones
 Enjoys being scratched  
 =end
+
+class Puppy
+end
+
+Puppy.methods
+
+duchess = Puppy.new
+fido = Puppy.new
+spot = Puppy.new
+
+spot.class
+fido.instance_of?(Puppy)
