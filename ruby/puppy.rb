@@ -18,8 +18,8 @@ Bark
 Lick
 Jump
 Fetch 
+Sit 
 Run 
 Likes to bury bones
 Enjoys being scratched  
 =end
-
