@@ -9,7 +9,13 @@ class Santa
 
   def eat_milk_and_cookies(cookie_type)
     puts "That was a good #{cookie_type} cookie!" 
-    cookie
+    cookie_type
   end   
-
 end   
+
+#Driver code to test instance methods 
+noel = Santa.new
+claus = Santa.new 
+
+noel.speak
+claus.eat_milk_and_cookies("Chocolate Chip")
