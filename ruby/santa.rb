@@ -20,21 +20,20 @@ class Santa
     cookie_type
   end   
   
-  def celebrate_birthday
-    #adds one year to age. 
+  def celebrate_birthday #adds one year to age. 
     @age = @age + 1 
   end 
   
-  def get_mad_at(reindeer)
+  def get_mad_at(reindeer) #Deletes reindeer from the rankings array. Then moves him to last spot.   
     puts "The previous reindeer ranking was: #{@reindeer_ranking}"
-    #Delete reindeer from the rankings array. Then add him at the end.   
-    @reindeer_ranking.delete(reindeer)
+    @reindeer_ranking.delete(reindeer) 
     @reindeer_ranking << reindeer
     puts "The new ranking is: #{@reindeer_ranking}"
+    @reindeer_ranking
   end   
 end   
 
-#Driver code to test instance methods 
+#Driver code to test instance methods ---------------------------------------------------------------
 noel = Santa.new("male", "mixed")
 noel.speak
 noel.eat_milk_and_cookies("Chocolate Chip")
@@ -48,21 +47,22 @@ puts "Santa's gender was #{noel.gender}"
 noel.gender = "agender"
 puts "Santa's new gender is: #{noel.gender}"
 
-#Santa Creator 
+
+#Santa Creator --------------------------------------------------------------------------------------
 example_ethnicities = ['Amerindian and Alaska native', 'Native Hawaiian', 
-'Other Pacific islander', 'Superhero', 'Mythical Creature', 'Disney Princess', 
-'Mexican', 'Cuban', 'Puerto Rican', 'Latino/ Hispanic American', 'N/A', 
-'Dominican', 'German', 'Irish', 'African', 'White American', 'Black or African American', 
-'mixed' 'Italian', 'Polish', 'French', 'American Indian', 'Chinese', 
-'Dutch', 'Scottish', 'English', 'Thai', 'Japanese', 'Indonesian', 
-'Australian', 'prefer not to say']
+  'Other Pacific islander', 'Superhero', 'Mythical Creature', 'Disney Princess', 
+  'Mexican', 'Cuban', 'Puerto Rican', 'Latino/ Hispanic American', 'N/A', 
+  'Dominican', 'German', 'Irish', 'African', 'White American', 'Black or African American', 
+  'mixed' 'Italian', 'Polish', 'French', 'American Indian', 'Chinese', 
+  'Dutch', 'Scottish', 'English', 'Thai', 'Japanese', 'Indonesian', 
+  'Australian', 'prefer not to say']
 
 example_genders = ['Agender', 'Androgynous', 'Bigender',
-'Cisgender', 'Female','Male', 'Gender Fluid',
-'Gender Nonconforming', 'Gender Questioning', 'Genderqueer',
-'Intersex', 'Neither', 'Neutrois', 'Non-binary',
-'Other', 'Pangender', 'Transgender', 'Transsexual', 
-'Prefer Not to Answer gender']
+  'Cisgender', 'Female','Male', 'Gender Fluid',
+  'Gender Nonconforming', 'Gender Questioning', 'Genderqueer',
+  'Intersex', 'Neither', 'Neutrois', 'Non-binary',
+  'Other', 'Pangender', 'Transgender', 'Transsexual', 
+  'Prefer Not to Answer gender']
 
 #Will make 1000 new Santas that are of random gender, ethniticy and age. 
 santa_count = 0
