@@ -5,58 +5,65 @@ class Puppy
     toy
   end
 
-  def speak(int)
-    int.times {puts "Woof!"}
-  end 
-
-   def roll_over
+  def initialize
+    puts "Initializing new puppy instance ..."
+  end
+  
+  def speak(i)
+    i.times {puts "Woof!"}
+  end   
+  def roll_over
     puts "*rolls over*"
-  end   
-
+  end
   def dog_years(age)
-    age * 7
-  end 
-
-  def bury(item)
-    puts "I just buried the #{item} in the backyard!"
+    dog_age = age * 7
+    dog_age
+  end
+  def bury_toy(item)
+    puts "I buried the #{item} in the back yard"
     item
-  end   
+  end
+end 
 
-  def initialize 
-    p "Initializing new puppy instance ..."
-  end   
-   
+#DRIVER CODE 
+spot = Puppy.new 
+felix = Puppy.new
+
+spot.fetch("ball")
+felix.speak(3)
+spot.roll_over
+spot.dog_years(4)
+felix.bury_toy("bone")
+
+class Cat
+  
+  def initialize
+    puts "Creating new cat instance"
+  end
+  
+  def jump(i)
+    puts "The cat jumps #{i} times!"
+  end
+  def play(toy)
+    puts "The cat is playing with #{toy}"
+  end
+end
+cat_array = []
+i = 0
+until i == 50
+  new_cat = Cat.new
+  puts "You have created a new cat called #{new_cat}"
+  cat_array << new_cat
+  i += 1
 end
 
-#DRIVER CODE
-
-felix = Puppy.new 
-spot = Puppy.new
-toy = "ball"
-
-felix.fetch(toy) 
-felix.speak(1)
-
-p felix.dog_years(3)
-felix.bury("bone")
-
-#TESTING FOR RELEASE 2 W/ PUPPY CLASS 
-
-bob = Puppy.new
-bob.roll_over
-puppy_array = []
-
-
-5.times do |x| 
-  new_puppy = (x = Puppy.new)
-  puppy_array << new_puppy 
+jump_count= 1
+cat_array.each do |y|
+  y.jump(jump_count)
+  jump_count += 1
+  if jump_count.even?
+    y.play("yarn")
+  else  
+    y.play("ball")
+  end   
 end   
-
-p puppy_array
-
-count = 0 
-puppy_array.each do |y|
-  y.roll_over
-  y.bury("bone #{count}")
-  count += 1
-end 
