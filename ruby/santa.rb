@@ -1,6 +1,7 @@
+#Declare Santa class and instance methods
 class Santa
-  attr_reader :age, :ethnicity
-  attr_accessor :gender 
+  attr_reader :ethnicity
+  attr_accessor :gender, :age 
 
   def initialize(gender, ethnicity)
     @gender = gender 
@@ -41,24 +42,35 @@ noel.get_mad_at("Dasher")
 puts "Santa's age was: #{noel.age}"
 noel.celebrate_birthday
 puts "Santa's now #{noel.age} years old." 
+noel.age = 56
+puts "Santa's now #{noel.age} years old." 
 puts "Santa's gender was #{noel.gender}"
 noel.gender = "agender"
 puts "Santa's new gender is: #{noel.gender}"
 
+#Santa Creator 
+example_ethnicities = ['Amerindian and Alaska native', 'Native Hawaiian', 
+'Other Pacific islander', 'Superhero', 'Mythical Creature', 'Disney Princess', 
+'Mexican', 'Cuban', 'Puerto Rican', 'Latino/ Hispanic American', 'N/A', 
+'Dominican', 'German', 'Irish', 'African', 'White American', 'Black or African American', 
+'mixed' 'Italian', 'Polish', 'French', 'American Indian', 'Chinese', 
+'Dutch', 'Scottish', 'English', 'Thai', 'Japanese', 'Indonesian', 
+'Australian', 'prefer not to say']
 
+example_genders = ['Agender', 'Androgynous', 'Bigender',
+'Cisgender', 'Female','Male', 'Gender Fluid',
+'Gender Nonconforming', 'Gender Questioning', 'Genderqueer',
+'Intersex', 'Neither', 'Neutrois', 'Non-binary',
+'Other', 'Pangender', 'Transgender', 'Transsexual', 
+'Prefer Not to Answer gender']
 
-=begin
-
-#Diverse initializations  
-santas = []
-example_genders = ["agender", "female", "prefer not to say", "male", "gender fluid", "N/A", "bigender"]
-example_ethnicities = ["black", "N/A", "white", "Asian", "prefer not to say", "mixed", "Latino", "black"]
-example_genders.each_index do |i|
-  if i.even? 
-  santas << Santa.new(example_genders[i], example_ethnicities[i - 1])
-  else 
-  santas << Santa.new(example_genders[i], example_ethnicities[i + 1]) 
-  end
+#Will make 1000 new Santas that are of random gender, ethniticy and age. 
+santa_count = 0
+while santa_count < 1000  
+  santa= Santa.new(example_genders.sample, example_ethnicities.sample)
+  santa.age = rand(0..140)
+  puts "This Santa is #{santa.age} years old." 
+  santa_count += 1 
 end   
 
-=end 
+
