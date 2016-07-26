@@ -1,6 +1,5 @@
-#Declare class
+#DECLARE NEW PUPPY CLASS 
 class Puppy
-
   def fetch(toy)
     puts "I brought back the #{toy}!"
     toy
@@ -13,13 +12,16 @@ class Puppy
   def speak(i)
     i.times {puts "Woof!"}
   end   
+
   def roll_over
     puts "*rolls over*"
   end
+
   def dog_years(age)
     dog_age = age * 7
     dog_age
   end
+
   def bury_toy(item)
     puts "I buried the #{item} in the back yard"
     item
@@ -57,16 +59,16 @@ Runs
 Hunts mice
 =end
 
-# DECLARE NEW CLASS
+#DECLARE NEW CAT CLASS
 class Cat
-  
   def initialize
-    puts "Creating new cat instance"
+    puts "Creating new cat instance..."
   end
   
   def jump(i)
     puts "The cat jumps #{i} times!"
   end
+
   def play(toy)
     puts "The cat is playing with #{toy}"
   end
