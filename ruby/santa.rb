@@ -15,12 +15,59 @@ class Santa
     puts "That was a good #{cookie_type} cookie!" 
     cookie_type
   end   
+
+  #getter methods 
+  def age 
+    @age 
+  end   
+
+  def ethnicity 
+    @ethnicity
+  end 
+
+  def gender 
+    @gender 
+  end   
+  
+  #setter methods 
+  def celebrate_birthday
+    @age = @age + 1 
+  end 
+  
+  def gender=(new_gender) 
+    @gender = new_gender 
+  end 
+  
+  def get_mad_at(reindeer)
+    puts "The previous ranking was: #{@reindeer_ranking}"
+    #puts "#{reindeer}'s ranking is #{(@reindeer_ranking.find_index(reindeer) + 1)}"
+    index = @reindeer_ranking.find_index(reindeer)
+    @reindeer_ranking[index] = ' '
+    @reindeer_ranking.insert(-1, reindeer)
+    @reindeer_ranking.delete_if { |ranking| ranking == ' ' } 
+    puts "The new ranking is: #{@reindeer_ranking}"
+  end   
+
+=begin
+celebrate_birthday should age Santa by one year.
+get_mad_at can take a reindeer's name as an argument, and move that reindeer in last place in the reindeer rankings. Vixen knows what he did.
+The @gender attribute should have a setter method that allows @gender to be reassigned from outside the class definition.
+=end 
+
 end   
 
 #Driver code to test instance methods 
 noel = Santa.new("male", "mixed")
 noel.speak
 noel.eat_milk_and_cookies("Chocolate Chip")
+noel.get_mad_at("Dancer")
+p noel.age
+noel.celebrate_birthday
+p noel.gender 
+noel.gender = "agender"
+puts "new gender is: #{noel.gender}"
+puts "new age is: #{noel.age}" 
+
 
 
 
