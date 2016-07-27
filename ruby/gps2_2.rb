@@ -90,6 +90,7 @@ list_print(user_list)
 #Release 5- REFLECT
 =begin
 What did you learn about pseudocode from working on this challenge?
+  Pseudocode should mimic the code line by line. Breaking down a code one step at a time. It should indent as you do the code and also use capitalization for keywords. 
   By writing insightful pseudocode, you can keep track of what your method needs to return(output) when defining it.
 What are the trade offs of using arrays and hashes for this challenge?
   Creating a hash to store shopping list from the get-go allows the updating of quantity to be easier. 
@@ -104,7 +105,8 @@ How can you pass information between methods?
   you can then use that variable when you call another method.  
 What concepts were solidified in this challenge, and what concepts are still confusing?
   This challenge was extremely helpful in understanding how to pass information between methods. 
-  The idea of creating a variable to store the output of another method and then using that variable as a parameter for other methods was new to me.   
+  It also made it clear that I need to test out my code alot more frequently!! 
+  Our GPS guide also helped clear up how to improve our pseudocode for later challenges! 
 =end 
 
 
