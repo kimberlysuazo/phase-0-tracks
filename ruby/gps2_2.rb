@@ -79,11 +79,34 @@ update_quantity('lemonade', 2, user_list)
 p user_list
 list_print(user_list)
 
-#RELEASE 3
+#Release 3
 update_quantity('tomatoes', 3, user_list)
 update_quantity('ice-cream', 4, user_list)
 remove_item('lemonade', user_list)
 list_print(user_list)
 update_quantity('ice-cream', 1, user_list)
 list_print(user_list)
+
+#Release 5- REFLECT
+=begin
+What did you learn about pseudocode from working on this challenge?
+  By writing insightful pseudocode, you can keep track of what your method needs to return(output) when defining it.
+What are the trade offs of using arrays and hashes for this challenge?
+  Creating a hash to store shopping list from the get-go allows the updating of quantity to be easier. 
+  If we would use an array to store shopping list, then we would have to create a hash later on.  
+What does a method return?
+  Because of implicit return, the method returns the value of the last evaluated expression. 
+  Therefore, one must be careful with using puts or p at the end of a method, which return nil.
+What kind of things can you pass into methods as arguments?
+  You can pass different types of variables, objects and data structures. You pass strings, arrays, hashes, integers, etc.  
+How can you pass information between methods?
+  By creating a new variable which stores what another method returns, 
+  you can then use that variable when you call another method.  
+What concepts were solidified in this challenge, and what concepts are still confusing?
+  This challenge was extremely helpful in understanding how to pass information between methods. 
+  The idea of creating a variable to store the output of another method and then using that variable as a parameter for other methods was new to me.   
+=end 
+
+
+
 
