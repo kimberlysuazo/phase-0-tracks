@@ -18,10 +18,11 @@ describe WordGame do
   it "sets new word array to blanks length equal to letters array on initialization" do 
     expect(game.new_word).to eq ['_', '_', '_', '_', '_', '_', '_']
   end 
+  it "Takes in a guess and adds that letter to guessed letters array" do
+    game.enter_guess('e')
+    expect(game.guessed_letters).to eq ['e']
+  end 
 
 end    
 
 
-
-   
-    
