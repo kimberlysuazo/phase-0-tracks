@@ -5,11 +5,10 @@ attr_reader :letters, :guess_allowed, :new_word, :guess_count, :guessed_letters
     @letters = word.chars
     @guess_count = 0
     @guess_allowed = @letters.count * 2
-    @new_word= Array.new(@letters.count, “_”)
+    @new_word= Array.new(@letters.count, '_')
     @guessed_letters = []
   end   
  
-
 
 end   
 
