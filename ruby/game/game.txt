@@ -1,0 +1,44 @@
+#PSEUDOCODE 
+#declare WordGame class 
+  #Initialize class method 
+    #input: word 
+    #steps:
+      #Initialize instance variables for: 
+        #An array thats made of the word's characters
+        #A guess counter
+        #The amount of guesses allowed
+        #an empty array to store the guessed letters 
+        #A new word array that stores the current word w/ the guessed letters. 
+   #Set getter methods for all instance variables 
+   #Def method for when a guess is entered
+    #input: a letter 
+    #steps:
+      #Store letter entered into the guessed letter array. 
+    #output: updated guessed letters array.  
+   #Def method that evaluates the letter entered 
+   #input: a letter 
+   #steps:
+      #IF the letter entered is NOT present in the guessed_letters array, 
+        #Increase the guess count by 1. 
+        #IF the letter entered is in the word to guess, 
+          #input that into the new word array at the correct index. 
+   #output: new word array joined w/ spaces in between.        
+#For user interface
+  #Ask user for a word. 
+  #WHILE loop will run 
+    #until reached guessed allowed 
+    #or break if word is guessed
+  #IF user guesses correctly,  
+    #Prints a congrats message 
+  #ELSE 
+    #Prints loser message.      
+
+
+
+
+
+
+
+
+
+
