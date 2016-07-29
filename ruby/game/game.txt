@@ -21,10 +21,12 @@
       #IF the letter entered is NOT present in the guessed_letters array, 
         #Increase the guess count by 1. 
         #IF the letter entered is in the word to guess, 
+          #ITERATE through the letters to find the matching index(or indexes if letter repeats)
           #input that into the new word array at the correct index. 
    #output: new word array joined w/ spaces in between.        
 #For user interface
   #Ask user for a word. 
+  #Ask user for guess
   #WHILE loop will run 
     #until reached guessed allowed 
     #or break if word is guessed
