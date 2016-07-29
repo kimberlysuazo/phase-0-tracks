@@ -8,7 +8,9 @@ attr_reader :letters, :guess_allowed, :new_word, :guess_count, :guessed_letters
     @new_word= Array.new(@letters.count, '_')
     @guessed_letters = []
   end   
- 
+  def enter_guess(letter_entered)
+    @guessed_letters << letter_entered
+  end 
 
 end   
 
