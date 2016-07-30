@@ -19,7 +19,7 @@ attr_accessor :guess_count
         @new_word[z] = letter_entered
       end    
     end 
-    @new_word
+    @new_word 
   end 
 end   
 
