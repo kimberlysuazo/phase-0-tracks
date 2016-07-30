@@ -23,8 +23,8 @@ describe WordGame do
     expect(game.guessed_letters).to eq ['a']
   end 
   it "Checks whether the letter is in the original word and enters that into new array at correct index" do 
-    game.evaluate_guess('t')
-    expect(game.new_word).to eq ['t', '_', '_', 't', '_', '_', '_']
+    game.evaluate_guess('x')
+    expect(game.new_word).to eq ['_', '_', '_', '_', '_', '_', '_']
   end 
 end    
 
