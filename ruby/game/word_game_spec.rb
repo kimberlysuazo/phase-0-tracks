@@ -18,6 +18,11 @@ describe WordGame do
   it "sets new word array to blanks length equal to letters array on initialization" do 
     expect(game.new_word).to eq ['_', '_', '_', '_', '_', '_', '_']
   end 
+  it "Increases guess_count by 1 only if new letter is entered" do
+    game.increase_count('a')
+    expect(game.guess_count).to eq 1
+  end 
+
   it "Takes in a guess and adds that letter to guessed letters array" do
     game.enter_guess('a')
     expect(game.guessed_letters).to eq ['a']
@@ -28,5 +33,3 @@ describe WordGame do
   end 
 end    
 
-
-#guess if guess count goes up?? 
