@@ -19,10 +19,14 @@ describe WordGame do
     expect(game.new_word).to eq ['_', '_', '_', '_', '_', '_', '_']
   end 
   it "Takes in a guess and adds that letter to guessed letters array" do
-    game.enter_guess('e')
-    expect(game.guessed_letters).to eq ['e']
+    game.enter_guess('a')
+    expect(game.guessed_letters).to eq ['a']
   end 
-
+  it "Checks whether the letter is in the original word and enters that into new array at correct index" do 
+    game.evaluate_guess('t')
+    expect(game.new_word).to eq ['t', '_', '_', 't', '_', '_', '_']
+  end 
 end    
 
 
+#guess if guess count goes up?? 
