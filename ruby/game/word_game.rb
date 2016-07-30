@@ -1,5 +1,6 @@
 class WordGame 
-attr_reader :letters, :guess_allowed, :new_word, :guess_count, :guessed_letters
+attr_reader :letters, :guess_allowed, :new_word, :guessed_letters
+attr_accessor :guess_count
 
   def initialize(word) 
     @letters = word.chars
@@ -11,21 +12,22 @@ attr_reader :letters, :guess_allowed, :new_word, :guess_count, :guessed_letters
   def enter_guess(letter_entered)
     @guessed_letters << letter_entered
   end 
-
+  def evaluate_guess(letter_entered)
+    if @letters.include?(letter_entered)
+      index = letters.each_index.select {|x| letters[x] == letter_entered}
+      index.each do |z|
+        @new_word[z] = letter_entered
+      end    
+    end 
+    @new_word
+  end 
 end   
 
 
-=begin
-# enter_guess(letter_entered) method 
-store that into guessed_letters array 
-
-end 
-
+=begin 
 #evaluate_guess(letter_entered)
 -is letter_entered present in guessed_letters array? 
 
-IF letter_entered is not present in guessed_letters array, 
-  - guess_count += 1
   -IF letter_entered is present in @letters array, 
     -  @letters.each do |z|
         -if z = letter_entered
@@ -45,6 +47,10 @@ game = WordGame.new
 
 
 while game.guess_count <= game.guess_allowed
+
+  if !game.guessed_letters.find(letter_entered)
+    game.guess_count += 1
+  end   
 
   break if game.new_word.join("") = word 
 
