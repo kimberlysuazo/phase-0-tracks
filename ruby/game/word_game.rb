@@ -3,9 +3,9 @@
 #one letter at a time. Player 2 has a limited number of guesses.
 #all pseudocode can be found in ./game_pseudocode.txt file. 
 
+#WordGame class declaration 
 class WordGame 
 attr_reader :letters, :new_word, :guessed_letters, :guess_count, :guess_allowed
-
 
   def initialize(word) 
     @letters = word.chars
@@ -22,7 +22,6 @@ attr_reader :letters, :new_word, :guessed_letters, :guess_count, :guess_allowed
   def enter_guess(letter_entered)
     @guessed_letters << letter_entered
   end 
-    
   def evaluate_guess(letter_entered)
     if @letters.include?(letter_entered)
       index = letters.each_index.select {|x| letters[x] == letter_entered}
@@ -34,14 +33,13 @@ attr_reader :letters, :new_word, :guessed_letters, :guess_count, :guess_allowed
   end 
 end   
 
-#USER INTERFACE
+#Driver code- User Interface
 puts "Welcome to The Word Guessing Game. The purpose of the game is for player 2 to guess the word player 1 entered, one letter at a time."
 puts "Player 2 has a limited number of guesses."
 puts "Player 1, please enter a word for player 2 to guess."
 word = gets.chomp.downcase
 game = WordGame.new(word)
 puts "The word has #{word.length} letters."
-
 
 until game.guess_allowed - game.guess_count == 0 || game.new_word.join("") == word 
   puts "Player 2, You have #{game.guess_allowed - game.guess_count} guesses left."
