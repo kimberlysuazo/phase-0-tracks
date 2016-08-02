@@ -29,6 +29,7 @@ class VirusPredictor
 #of deaths predicted for that state. The output is the predicted number of deaths in the state for this outbreak.  
   def predicted_deaths
     # predicted deaths is solely based on population density
+    # as population density increases, it affects the percent of the population that will die. The higher the population density, the higher number of deaths. 
     y = case @population_density
       when (0..49) then 0.05
       when (50..99) then 0.1
@@ -39,7 +40,7 @@ class VirusPredictor
     (@population * y).floor
   end 
 #The speed_of_spread method also takes into account the population density and depending on that figure, assigns a speed at which the outbreak 
-#will spread across the state. Its output is the months it will take to spread across the state. 
+#will spread across the state. Its output is the months it will take to spread across the state. The higher the population density, the quicker it will spread. 
   def speed_of_spread #in months
     speed = case @population_density
       when (0..49) then 2.5
