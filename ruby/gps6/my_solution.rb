@@ -83,10 +83,10 @@ class VirusPredictor
 
 #The virus_effects method, calls the predicted_deaths and the speed_of_spread methods defined below.   
   def virus_effects
-    print "#{@state} will lose #{number_of_deaths} people in this outbreak"
-        puts " and will spread across the state in #{speed} months.\n\n"
-    predicted_deaths(@population_density, @population, @state)
-    speed_of_spread(@population_density, @state)
+     print "#{@state} will lose #{predicted_deaths} people in this outbreak 
+     and will spread across the state in #{speed_of_spread} months. \n\n"
+    #predicted_deaths(@population_density, @population, @state)
+    #speed_of_spread(@population_density, @state)
   end
 
   private
