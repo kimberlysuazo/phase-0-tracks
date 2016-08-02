@@ -6,4 +6,22 @@
 //         - Print that new string to the console. 
 //  Output: New string.          
 
+function reverse(string) {
+  for (var i = string.length; i > -1; i--) {
+    console.log(string[i])
+  }
+    return; 
+  }
+}
 
+function reverse(string) {
+var empty = '';
+for ( var i = string.length; i > -1; i--) {
+   empty += string[i];
+   //console.log(empty.substring(string.length));
+}
+console.log(empty);
+}
+
+reverse("Bill")
+reverse("Kimberly");
