@@ -85,8 +85,6 @@ class VirusPredictor
   def virus_effects
      print "#{@state} will lose #{predicted_deaths} people in this outbreak 
      and will spread across the state in #{speed_of_spread} months. \n\n"
-    #predicted_deaths(@population_density, @population, @state)
-    #speed_of_spread(@population_density, @state)
   end
 
   private
@@ -94,19 +92,14 @@ class VirusPredictor
 #The predicted_deaths method takes into account the population density of each state, and depending on its amount, calculates a specific number of deaths predicted for that state. The output is the printed statement saying the number of deaths in the state for this outbreak.  
   def predicted_deaths(population_density, population, state)
     # predicted deaths is solely based on population density
-    if @population_density >= 200
-      number_of_deaths = (@population * 0.4).floor
-    elsif @population_density >= 150
-      number_of_deaths = (@population * 0.3).floor
-    elsif @population_density >= 100
-      number_of_deaths = (@population * 0.2).floor
-    elsif @population_density >= 50
-      number_of_deaths = (@population * 0.1).floor
-    else
-      number_of_deaths = (@population * 0.05).floor
-    end
-  print "#{@state} will lose #{number_of_deaths} people in this outbreak"
-  end
+    y = case @population_density
+    when (150..199) then 0.3
+    when (100..149) then 0.2
+    when (50..99) then 0.1
+    when (0..49) then 0.05
+    else 0.4
+    end 
+      (@population * y).floor
 
 #The speed_of_spread method also takes into account the population density and depending on that figure, assigns a speed at which the outbreak will spread accross the state. Its output is the printed statement. 
   
