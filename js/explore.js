@@ -11,12 +11,19 @@ function reverse(string) {
 var newString = '';
 for ( var i = (string.length -1); i > -1; i--) {
    newString += string[i];
-//for (var i = 1; i < (string.length + 1) ; i++){
-  //newString += string[string.length - i];
 }
-console.log(newString);
+return newString;
 }
 
-reverse("Bill");
-reverse("Kimberly");
 
+//Driver code
+
+//this prints Kimberly reversed 
+console.log(reverse("Kimberly"));
+
+// Stores result of reverse function in new variable. 
+var r = reverse("Javascript has a lot of semicolons");
+// Adds conditional that only prints r if the string is longer than one letter. 
+if (r.length > 1) {
+  console.log(r);
+} 
