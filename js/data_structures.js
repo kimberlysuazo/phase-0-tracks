@@ -42,7 +42,7 @@ var mazda = new Car(2016, "sports car", "blue");
 saab.drive();
 mazda.drive();
 
-//Use a for in loop to loop through the keys and values of an object. 
+//Use a 'for in' loop to loop through the keys and values of an object. 
 for(var i in saab) 
 {
   console.log( i + ": " + saab[i] + "\b");
