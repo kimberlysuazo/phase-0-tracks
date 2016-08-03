@@ -1,9 +1,10 @@
 // Pseudocode 
-// Reverse function: a function that takes in a strings and returns it reversed 
+// Reverse function: a function that takes in a string and returns it reversed 
 // Input: A string. 
-//  Steps: Loop through each index of the string descending from the largest index.
-//         - Take each letter and add that to a new string. 
-//         - Print that new string to the console. 
+//  Steps: 
+//         - Declare new empty string.
+//         - Loop through each index of the string given descending from the largest index.
+//         - Take each letter beginning from the end of the word and add that to the empty string.    
 //  Output: New string.          
 
 
@@ -16,7 +17,7 @@ return newString;
 }
 
 
-//Driver code
+//DRIVER CODE
 
 //this prints Kimberly reversed 
 console.log(reverse("Kimberly"));
