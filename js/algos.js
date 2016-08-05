@@ -7,7 +7,7 @@
       //evaluate string at each index (loop)
         //Find length of each string 
         // push those lengths to store on the new lengths array. 
-      // Set a loop that will go through each of the lengths array
+      // Set a loop that will go through each item of the lengths array
         // it will compare the length to max. 
           // IF that length is larger, it will set that as the max variable value.
       // Method will return the longest string by using the index of max in the lengths array 
@@ -20,11 +20,11 @@ var max = 0;
   array.forEach(function (item, index, array) {
     lengths.push(item.length);
   });
- for (var counter = 0; counter < lengths.length; counter ++){
-    if (max < lengths[counter]) {
-      max = (lengths[counter]);
+  lengths.forEach(function (item, index, array) {
+    if (max < item) {
+      max = item;
     } 
-  } 
+  });
 return array[lengths.indexOf(max)];
 } 
 
