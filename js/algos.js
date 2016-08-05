@@ -4,15 +4,27 @@
     // Steps: 
       //evaluate string at each index (loop)
         //Find length of each string 
-      // select one with longest length 
+        // push those lengths to store on the new lengths array. 
+      // compare indexes to select which one is larger. select one with longest length 
       // return that index 
       // using that index, match the appropriate phrase. 
 // Output: A string
 
-var phrases = ["long phrase","longest phrase","longer phrase"];
 
 function longest_value(array) {
- array.forEach(function (item, index, array) {
-  console.log(item.length);
-});
+var lengths = []; 
+var max = [0];
+  array.forEach(function (item, index, array) {
+    lengths.push(item.length);
+  });
+ for (var counter = 0; counter < lengths.length; counter ++){
+    if (max[0] < lengths[counter]) {
+      max.unshift(lengths[counter]);
+    } 
+  } 
+console.log(max[0]) 
 } 
+
+// driver code 
+var phrases = ["long phrase","longest phrase","longer phrase"];
+longest_value(phrases);
