@@ -49,25 +49,6 @@ function objectComparer(object1, object2) {
   return false; 
  }
  
-// driver code 
-// create array to test longestItem
-var phrases = ["long phrase","longest phrase","longer phrase"];
-console.log(longestItem(phrases));
-
-// create objects to test objectCompare
-var dog = {'age': 3, name: 'Spot'};
-var humans = {name: 'John', age: 3};
-var cars = {make: 'Ford', year: 3, color: 'black', name: 'Fiesta'};
-var pen = {tip: 'ballpoint', 'ink': 'red'}
-
-// compare two objects with same keys (in different order), and one matching key-value pair 
-console.log(objectComparer(dog, humans));
-// compare two objects that share one key, one value, but not a key-value pair match
-console.log(objectComparer(dog, cars));
-// compare two objects that have no similar keys
-console.log(objectComparer(pen, cars));
-
-
 //For the function that generates a random word array of the given length, Im splitting into two functions:
 // One function (randomWord) generates the random word thats from 1 to 10 letters long. 
 // Second function (wordArray) generates a random words array of the specified length. 
@@ -102,7 +83,6 @@ var string= '';
    }
 return string; 
 }
-
 function wordArray(num){
 var words = []; 
   for (var times = 0; times < num; times ++){
@@ -111,8 +91,35 @@ var words = [];
   }
   return words
 }
+
+// ===============================================================================================================
+// DRIVER CODE 
+// create array to test longestItem
+var phrases = ["long phrase","longest phrase","longer phrase"];
+console.log(longestItem(phrases));
+
+// create objects to test objectCompare
+var dog = {'age': 3, name: 'Spot'};
+var humans = {name: 'John', age: 3};
+var cars = {make: 'Ford', year: 3, color: 'black', name: 'Fiesta'};
+var pen = {tip: 'ballpoint', 'ink': 'red'}
+
+// compare two objects with same keys (in different order), and one matching key-value pair 
+console.log(objectComparer(dog, humans));
+// compare two objects that share one key, one value, but not a key-value pair match
+console.log(objectComparer(dog, cars));
+// compare two objects that have no similar keys
+console.log(objectComparer(pen, cars));
+// prints array of 7 random words 
 console.log(wordArray(7)); 
 
 
-
+// generates an array, prints the array, feeds the array to "longest item" function, and prints the result.
+console.log("below 10 arrays of randomly generated length between 2 and 5, containing random words:");
+for (var s = 0; s < 10; s ++) {
+  var rnum= Math.floor(Math.random() * 4) + 2; //generates random number bet 2 and 5
+  var y = wordArray(rnum); // uses that random number to create word array of given length
+  console.log(y); //prints the array
+  console.log("Longest word is: " + longestItem(y) + '\n'); // prints the longest word in the array 
+}
 
