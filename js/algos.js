@@ -28,13 +28,13 @@ return array[lengths.indexOf(max)];
 }
  
 //objectComparer function will take in two objects, and compare their key-value pairs to give. 
-// If any keys or values match, function will return true. if not, function will return false. 
+// If there is a keys-value pair match, function will return true. if not, function will return false. 
   // Input: Two objects 
   // Steps: 
     // To check for matching key-value pair, 
       // Loop through object 1, 
-          // Check if the key is the value is the same both in object 1 and object 2, using the same key.
-          // Only returns true if there is a key-value match.  
+          // Check if the  value is the same both in object 1 and object 2, using the same key.
+          // Only returns true if there is a key-value match, because it uses the same key for both object values
               // IF returns true 
                  // function returns TRUE.              
       //ELSE function returns FALSE.
