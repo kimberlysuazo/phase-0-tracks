@@ -68,21 +68,34 @@ console.log(objectComparer(dog, cars));
 console.log(objectComparer(pen, cars));
 
 
-// Write a function that takes an integer for length,
-//  and builds and returns an array of strings of the given length.
-//   So if we ran your function with an argument of 3, 
-//   we would get an array of 3 random words back 
-//   (the words don't have to be actual sensical English words -- "nnnnfph" totally counts). 
-//   The words should be of randomly varying length, with a minimum of 1 letter and a maximum of 10 letters. 
-//   (This involves a new trick, generating a random number, that you'll have to look up,
-//    but the solution on how to do so is relatively straightforward.)
-// Add driver code that does the following 10 times: generates an array, prints the array, 
-// feeds the array to your "longest word" function, and prints the result.
+//For the function that generates a random word array of the given length, Im splitting into two functions:
+// One function (randomWord) generates the random word thats from 1 to 10 letters long. 
+// Second function (wordArray) generates a random words array of the specified length. 
+  // randomWord function 
+  // Input: none
+    // Steps:
+    // declare alphabet variable
+    // declare variable that will select the length of the word randomly from 1 to 10. 
+    // declare empty string to later store the new word. 
+      // Loop for the amount of the randomly selected length. 
+        // generate random number from 0 to max the alphabet length, not included. 
+        // Select a random letter by using that random number as index to the alphabet string. 
+        // Add that letter to empty string.  
+    //return string
+  //OUTPUT: string.  
+
+  // wordArray function
+  // Input: number
+    // Steps: 
+    // declare empty array
+    // Loop for the amount passed as parameter
+      // call randomWord to generate a random word
+      // push that random word to empty array
+  //OUTPUT: array. 
 function randomWord() {
 var chars = "abcdefghijklmnopqrstuvwxyz";
 var randomLength = Math.floor(Math.random() * 10) + 1; 
 var string= '';
-var words = [];
    for (var letters = 0; letters < randomLength; letters ++) {
       var randomLetter= chars[Math.floor(Math.random() * (chars.length))];
       string += randomLetter; 
@@ -100,5 +113,6 @@ var words = [];
 }
 console.log(wordArray(7)); 
 
-// (max - min + 1)) + min
-// chars.length + 1) 
+
+
+
