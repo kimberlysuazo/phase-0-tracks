@@ -49,31 +49,11 @@ return array[lengths.indexOf(max)];
 
                      
 function objectComparer(object1, object2) {
-var allValues1 = [];
-var allValues2 = [];
-
-  // get all property values into arrays 
- for(var val in object1) {
-      allValues1.push(object1[val]);
-  }
-
- for(var val2 in object2) {
-      allValues2.push(object2[val2]);
-  }
-
-
-
   for(var key1 in object1) {
-      //object2.hasOwnProperty(key1);
       object2[key1] == object1[key1];
-      
-      for (var t = 0; t < allValues1.length; t ++) {
-         var z= (allValues2.indexOf(allValues1[t]));
-      }  
-        if ( (object2[key1] == object1[key1]) && (z != -1)){
+        if (object2[key1] == object1[key1]){
             return true; 
-        }
-        
+        }   
   }
   return false; 
  }
