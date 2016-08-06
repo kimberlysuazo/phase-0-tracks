@@ -1,5 +1,5 @@
 // Pseudocode 
-// longestItem function will take in an array of strings and return the string that is the longest. 
+//longestItem function will take in an array of strings and return the string that is the longest. 
 // Input: An array 
     // Steps: 
       // set an empty lengths array 
@@ -13,7 +13,6 @@
       // Method will return the longest string by using the index of max in the lengths array 
       // and then using that index to access the string in the original array      
 // Output: A string
-
 function longestItem(array) {
 var lengths = []; 
 var max = 0;
@@ -27,8 +26,8 @@ var max = 0;
   });
 return array[lengths.indexOf(max)];
 }
-
-// objectComparer function will take in two objects, and compare their key-value pairs to give. 
+ 
+//objectComparer function will take in two objects, and compare their key-value pairs to give. 
 // If any keys or values match, function will return true. if not, function will return false. 
   // Input: Two objects 
   // Steps: 
@@ -39,13 +38,13 @@ return array[lengths.indexOf(max)];
               // IF returns true 
                  // function returns TRUE.              
       //ELSE function returns FALSE.
-                     
+// OUTPUT: True / False                      
 function objectComparer(object1, object2) {
   for(var key1 in object1) {
-      object2[key1] == object1[key1];
-        if (object2[key1] == object1[key1]){
-            return true; 
-        }   
+    object2[key1] == object1[key1];
+      if (object2[key1] == object1[key1]){
+        return true; 
+      }   
   }
   return false; 
  }
@@ -67,3 +66,39 @@ console.log(objectComparer(dog, humans));
 console.log(objectComparer(dog, cars));
 // compare two objects that have no similar keys
 console.log(objectComparer(pen, cars));
+
+
+// Write a function that takes an integer for length,
+//  and builds and returns an array of strings of the given length.
+//   So if we ran your function with an argument of 3, 
+//   we would get an array of 3 random words back 
+//   (the words don't have to be actual sensical English words -- "nnnnfph" totally counts). 
+//   The words should be of randomly varying length, with a minimum of 1 letter and a maximum of 10 letters. 
+//   (This involves a new trick, generating a random number, that you'll have to look up,
+//    but the solution on how to do so is relatively straightforward.)
+// Add driver code that does the following 10 times: generates an array, prints the array, 
+// feeds the array to your "longest word" function, and prints the result.
+function randomWord() {
+var chars = "abcdefghijklmnopqrstuvwxyz";
+var randomLength = Math.floor(Math.random() * 10) + 1; 
+var string= '';
+var words = [];
+   for (var letters = 0; letters < randomLength; letters ++) {
+      var randomLetter= chars[Math.floor(Math.random() * (chars.length))];
+      string += randomLetter; 
+   }
+return string; 
+}
+
+function wordArray(num){
+var words = []; 
+  for (var times = 0; times < num; times ++){
+    randomWord(); 
+    words.push(randomWord());
+  }
+  return words
+}
+console.log(wordArray(7)); 
+
+// (max - min + 1)) + min
+// chars.length + 1) 
