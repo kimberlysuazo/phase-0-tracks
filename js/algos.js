@@ -27,59 +27,61 @@ var max = 0;
     } 
   });
 return array[lengths.indexOf(max)];
-} 
+}
 
 // objectComparer function will take in two objects, and compare their key-value pairs to give. 
 // If any keys or values match, function will return true. if not, function will return false. 
   // Input: Two objects 
   // Steps: 
-    // Make arrays of the values and keys of each object. 
+    // Make arrays of the values of each object. 
     // To check for matching keys, 
-      // Loop through the keys in object 1, to see if any of them are keys in object 2. 
-        
-             // if (allKeys.indexOf(key)) {var keyIndex = (allKeys.indexOf(key))}
-          // IF there is a match 
-              // Store it's index.  
-              // Check for matching values,
-                  // Loop through the values of object 1, to see if any of them are values in object 2. 
-                    // IF there is a match, store its index. 
-                     // if (allValues.indexOf(value)) { var keyValue = console.log(allValues.indexOf(value))}
-                        // IF keyIndex equals, valueIndex, then function returns TRUE. 
-                        // ELSE function returns FALSE 
-          //ELSE function returns FALSE
-                     
-function objectComparer(object1, object2) {
-// get all keys into arrays 
-var allKeys1 = Object.keys(object1);
-var allKeys2 = Object.keys(object2);
-var allValues1 = [];
-var allValues2 = [];
-  // get all property values into arrays 
-  for(var key in object1) {
-      allValues1.push(object1[key]);
-  }
-  for(var key in object2) {
-      allValues2.push(object2[key]);
-  }
-console.log(allKeys1);
-console.log(allKeys2);
-console.log(allValues1);
-console.log(allValues2);
-}
-
-
-// Add some driver code that tests both outcomes of your function.
+      // Loop through object 1, to see if any of the keys are keys in object 2. 
+        // Loop through the values of object 1, to see if any of them are values in object 2. 
+            // IF both conditions in the loop are true. 
+                 // function returns TRUE.              
+        //ELSE function returns FALSE
 
 // driver code 
-var phrases = ["long phrase","longest phrase","longer phrase"];
-console.log(longestItem(phrases));
+// var phrases = ["long phrase","longest phrase","longer phrase"];
+// console.log(longestItem(phrases));
 
-// create objects to test objectCompare
+// // create objects to test objectCompare
+
+                     
+function objectComparer(object1, object2) {
+var allValues1 = [];
+var allValues2 = [];
+
+  // get all property values into arrays 
+ for(var val in object1) {
+      allValues1.push(object1[val]);
+  }
+
+ for(var val2 in object2) {
+      allValues2.push(object2[val2]);
+  }
+
+
+
+  for(var key1 in object1) {
+      //object2.hasOwnProperty(key1);
+      object2[key1] == object1[key1];
+      
+      for (var t = 0; t < allValues1.length; t ++) {
+         var z= (allValues2.indexOf(allValues1[t]));
+      }  
+        if ( (object2[key1] == object1[key1]) && (z != -1)){
+            return true; 
+        }
+        
+  }
+  return false; 
+ }
+ 
 var dog = {name: 'Spot', 'age': 3};
 var humans = {name: 'John', 'age': 3};
-var cars = {make: 'saab', year: 2015, color: 'black'};
-
-objectComparer(dog, cars);
+var cars = {make: 'saab', year: 3, color: 'black', name: 3 };
 
 
-
+console.log(objectComparer(dog, humans));
+console.log(objectComparer(dog, cars));
