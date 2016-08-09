@@ -4,7 +4,8 @@ Queries for dentist_office.db
 SCHEMA: 
 CREATE TABLE doctors(
 id INTEGER PRIMARY KEY, 
-doctor_name VARCHAR(255)
+doctor_name VARCHAR(255), 
+number_patients INT
 );
 CREATE TABLE patients(
 id INTEGER PRIMARY KEY,
@@ -16,7 +17,7 @@ doctor_id INT,
 FOREIGN KEY (doctor_id) REFERENCES doctors(id)
 );
 
-———————————————————————————————————— —————————————————————
+———————————————————————————————————— ————————————————————————————————————
 RELEASE 2:
 Display the information in one table (either table is fine).
 Query: SELECT * FROM patients;
@@ -37,13 +38,12 @@ Output: 3|Jane Doe|1995-10-23|5558769987|true|2
 Display the information in both tables using one query.
 Query: SELECT * FROM patients, doctors WHERE patients.doctor_id = doctors.id;
 Output: 
-1|John Doe|1958-07-20|5554313021|false|2|2|Dr. Agnant
-2|Felicia Jones|1973-03-04|5554390987|true|1|1|Dr. Lee
-3|Jane Doe|1995-10-23|5558769987|true|2|2|Dr. Agnant
-4|Marco Santos|2000-01-28|5553349876|true|3|3|Dr. Alcantara
-5|George Santos|2002-07-13|5553349876|true|3|3|Dr. Alcantara
-6|Mark Lazar|1985-11-02|5559830987|false|1|1|Dr. Lee
-7|Tiffany Matthews|1990-12-20|5558763340|false|2|2|Dr. Agnant
+1|John Doe|1958-07-20|5554313021|false|2|2|Dr. Agnant|40
+3|Jane Doe|1995-10-23|5558769987|true|2|2|Dr. Agnant|40
+4|Marco Santos|2000-01-28|5553349876|true|3|3|Dr. Alcantara|35
+5|George Santos|2002-07-13|5553349876|true|3|3|Dr. Alcantara|35
+6|Mark Lazar|1985-11-02|5559830987|false|1|1|Dr. Lee|15
+7|Tiffany Matthews|1990-12-20|5558763340|false|2|2|Dr. Agnant|40
 
 
 Display a narrower selection of columns (fewer columns than all of them, in other words) from both tables using one query.
@@ -68,4 +68,27 @@ Query: SELECT * FROM patients;
 6|Mark Lazar|1985-11-02|5559830987|false|1
 7|Tiffany Matthews|1990-12-20|5558763340|false|2
 
+———————————————————————————————————— ————————————————————————————————————————————————
+RELEASE 3: 
+
+Query:SELECT name, dob, phone, insurance, doctor_name FROM patients INNER JOIN doctors ON patients.doctor_id = doctors.id;
+Output:
+John Doe|1958-07-20|5554313021|false|Dr. Agnant
+Jane Doe|1995-10-23|5558769987|true|Dr. Agnant
+Marco Santos|2000-01-28|5553349876|true|Dr. Alcantara
+George Santos|2002-07-13|5553349876|true|Dr. Alcantara
+Mark Lazar|1985-11-02|5559830987|false|Dr. Lee
+Tiffany Matthews|1990-12-20|5558763340|false|Dr. Agnant
+
+Query:  SELECT name, dob, doctor_name, number_patients FROM patients LEFT JOIN doctors ON patients.doctor_id = doctors.id;
+Output:
+John Doe|1958-07-20|Dr. Agnant|40
+Jane Doe|1995-10-23|Dr. Agnant|40
+Marco Santos|2000-01-28|Dr. Alcantara|35
+George Santos|2002-07-13|Dr. Alcantara|35
+Mark Lazar|1985-11-02|Dr. Lee|15
+Tiffany Matthews|1990-12-20|Dr. Agnant|40
+
+SELECT name, dob, doctor_name, number_patients FROM patients RIGHT JOIN doctors ON patients.doctor_id = doctors.id;
+Error: RIGHT and FULL OUTER JOINs are not currently supported
 
