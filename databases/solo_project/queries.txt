@@ -1,0 +1,21 @@
+Kimberly Suazo 
+Queries for dentist_office.db
+
+SCHEMA: 
+CREATE TABLE doctors(
+id INTEGER PRIMARY KEY, 
+doctor_name VARCHAR(255)
+);
+CREATE TABLE patients(
+id INTEGER PRIMARY KEY,
+name VARCHAR(255),
+dob TEXT,
+phone BIGINT,
+insurance BOOLEAN,
+doctor_id INT,
+FOREIGN KEY (doctor_id) REFERENCES doctors(id)
+);
+
+———————————————————————————————————— —————————————————————
+RELEASE 2:
+ 
