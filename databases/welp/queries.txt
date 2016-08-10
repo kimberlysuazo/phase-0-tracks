@@ -1,0 +1,47 @@
+            
+RELEASE 2—————————————————————————————————————————————————————— 
+You've joined two tables before. How do you join three?
+Query:
+SELECT * FROM businesses INNER JOIN reviews  
+ON businesses.id=reviews.business_id
+INNER JOIN users ON users.id=reviews.user_id; 
+
+Output:
+4|Lotus Yoga|1|4|great instructors, very clean space|4|2|2|Mandy|Kaling
+3|The Beagle Nightclub|2|2|too much country music|3|1|1|Bradford|Pitt
+3|The Beagle Nightclub|3|5|Amazing! country music all night long!!|3|5|5|Holly|Berry
+5|Plumbing by Janet|4|4|janet sure knows how to plumb|5|2|2|Mandy|Kaling
+
+
+There are some repetitive columns if we choose to view all fields. Choose instead to just view the user's names, the business name, the star rating, and the comment.
+Query:
+SELECT businesses.name, users.first_name, users.last_name, reviews.stars, reviews.comment 
+FROM businesses   
+INNER JOIN reviews  
+ON businesses.id=reviews.business_id
+INNER JOIN users  
+ON users.id=reviews.user_id; 
+Output: 
+Lotus Yoga|Mandy|Kaling|4|great instructors, very clean space
+The Beagle Nightclub|Bradford|Pitt|2|too much country music
+The Beagle Nightclub|Holly|Berry|5|Amazing! country music all night long!!
+Plumbing by Janet|Mandy|Kaling|4|janet sure knows how to plumb
+
+
+How do you view the data of all three tables for just one particular business? 
+Query:
+SELECT businesses.name, users.first_name, users.last_name, reviews.stars, reviews.comment 
+FROM businesses   
+INNER JOIN reviews  
+ON businesses.id=reviews.business_id
+INNER JOIN users  
+ON users.id=reviews.user_id
+WHERE businesses.id=3;
+
+Output: 
+The Beagle Nightclub|Bradford|Pitt|2|too much country music
+The Beagle Nightclub|Holly|Berry|5|Amazing! country music all night long!!
+
+
+
+
