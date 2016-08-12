@@ -67,6 +67,31 @@ require 'faker'
 db = SQLite3::Database.new("fit_info.db")
 db.results_as_hash = true
 
+create_table_cmd = <<-SQL
+  CREATE TABLE IF NOT EXISTS members(
+    id INTEGER PRIMARY KEY,
+    name VARCHAR(255),
+    starting_weight INT, 
+    current_weight INT
+  )
+SQL
+
+create_table2 = <<-SQL
+  CREATE TABLE IF NOT EXISTS calories(
+    id INTEGER PRIMARY KEY,
+    date TEXT,
+    amt_burned INT, 
+    member_id INT,
+    FOREIGN KEY (member_id) REFERENCES members(id)
+  )
+SQL
+
+
+# create a members table (if it's not there already)
+db.execute(create_table_cmd)
+
+# create a calories table (if it's not there already)
+db.execute(create_table2)
 
  
 
