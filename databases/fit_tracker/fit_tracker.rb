@@ -1,7 +1,7 @@
 # The Fit Tracker INTRO
 =begin
 The Fit Tracker is a group-based calorie and weight tracker. It is for groups (family, friends, coworkers) that want to get 
-healthy together with friendly competition for 3 months. 
+healthy together with friendly competition. 
 
 The fit tracker keeps track of calories burned and weight everyday you workout. 
 It tells you how many pounds you've lost and how many calories you've burned so far this week, and so far in the competition. 
@@ -48,7 +48,7 @@ OUTLINE for user interface:
 
 require 'sqlite3'
 require 'faker'
-
+require 'date'
 
 # create SQLite3 database
 db = SQLite3::Database.new("fit_info.db")
@@ -184,21 +184,32 @@ calories_person.each do |cals|
 
 
 puts "Here are your results, #{test_name}. Thus far you've lost #{weight_loss} lbs. and have burned #{total_calories.inject(:+)} calories."
+puts "Thus far this month, You've lost #{weight_month(db, person_id)} lbs and burned #{calories_month(db, person_id)} calories."
 
 
 
 #dates 
 today = Time.now.strftime("%m-%d") #date in mm-dd format
 # now = Date.today
-seven_days_ago = (Date.today - 7).strftime("%m-%d")
-month_ago = (Date.today - 30).strftime("%m-%d")
+
+
 #p seven_days_ago
 
+def calories_week(db, member_id)
+total_calories= []
+t =  DateTime.now
+past_week = ((t-6)..t).map{ |date| date.strftime("%m-%d") }
+past_week.each do |x|
+  calories_date= db.execute("SELECT * FROM calories WHERE member_id='#{member_id}' AND day='#{x}' ")
+  calories_date.each do |cals|
+    total_calories << cals['amt_burned']
+    end 
+end 
+total_calories.inject(:+)
+end 
 
 
-
-puts "This month, You've lost #{weight_month(db, person_id)} lbs and burned #{calories_month(db, person_id)} calories."
-
+puts "This past week, You've lost x lbs and burned #{calories_week(db, person_id)} calories."
 
 
   # Here are your results. Thus far this week, you've lost x lbs. and have burned x calories. 
