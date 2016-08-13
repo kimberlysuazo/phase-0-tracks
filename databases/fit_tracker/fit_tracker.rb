@@ -1,15 +1,15 @@
 # The Fit Tracker INTRO
 =begin
 The Fit Tracker is a group-based calorie and weight tracker. It is for groups (family, friends, coworkers) that want to get 
-healthy together with friendly competition. 
+healthy together with friendly competition. Good for medium-term timeline of more than 2 months. 
 
 The fit tracker keeps track of calories burned and weight everyday you workout. 
 It tells you how many pounds you've lost and how many calories you've burned so far this week, and so far in the competition. 
 It also ranks the team and declares a winner for week, month and thus far. 
 
 
-for the purposes of this exercise, we are doing group of 13 coworkers. Will use faker to create names.  
-Calling the group of 13 coworkers the Wolves Pack.   
+for the purposes of this exercise, we are doing group of 6 coworkers. Will use faker to create names.  
+Calling the group of 6 coworkers the Wolves Pack.   
 
 ----- 
 OUTLINE for user interface:  
@@ -132,9 +132,39 @@ updated_weight.each do |pounds|
   total_pounds << pounds['current_weight']
   end 
 weight = db.execute("SELECT * FROM members WHERE id='#{member_id}'")
-
 weight_loss= weight[0]['starting_weight'] - total_pounds.min 
 end   
+
+# This method calculates the calories burned over the past week. 
+def calories_week(db, member_id)
+total_calories= []
+t =  DateTime.now
+past_week = ((t-6)..t).map{ |date| date.strftime("%m-%d") }
+past_week.each do |x|
+  calories_date= db.execute("SELECT * FROM calories WHERE member_id='#{member_id}' AND day='#{x}' ")
+  calories_date.each do |cals|
+    total_calories << cals['amt_burned']
+    end 
+end 
+total_calories.inject(:+)
+end 
+
+
+# This method calculates the weight loss over the past week. 
+def weight_week(db, member_id)
+total_pounds= []
+t =  DateTime.now
+past_week = ((t-6)..t).map{ |date| date.strftime("%m-%d") }
+past_week.each do |x|
+  updated_weight = db.execute("SELECT * FROM weight WHERE member_id='#{member_id}' AND day='#{x}' ")
+  updated_weight.each do |pounds|
+    total_pounds << pounds['current_weight']
+    end 
+end 
+weight = db.execute("SELECT * FROM members WHERE id='#{member_id}'")
+weight_loss= weight[0]['starting_weight'] - total_pounds.min 
+end   
+
 
 
 # #create test member
@@ -183,37 +213,19 @@ calories_person.each do |cals|
   #total calories thus far = total_calories.inject(:+)
 
 
-puts "Here are your results, #{test_name}. Thus far you've lost #{weight_loss} lbs. and have burned #{total_calories.inject(:+)} calories."
+puts "Here are your results, #{test_name}." 
+puts "This past week, You've lost #{weight_week(db, person_id)} lbs and burned #{calories_week(db, person_id)} calories."
 puts "Thus far this month, You've lost #{weight_month(db, person_id)} lbs and burned #{calories_month(db, person_id)} calories."
+puts "Thus far you've lost #{weight_loss} lbs, and have burned #{total_calories.inject(:+)} calories."
+
+
+# Declare group rankings for week, month and thus far. Winner for month thus far. Winner thus far. 
+# declare method to find person_id. loop through all members. 
 
 
 
-#dates 
-today = Time.now.strftime("%m-%d") #date in mm-dd format
-# now = Date.today
 
 
-#p seven_days_ago
-
-def calories_week(db, member_id)
-total_calories= []
-t =  DateTime.now
-past_week = ((t-6)..t).map{ |date| date.strftime("%m-%d") }
-past_week.each do |x|
-  calories_date= db.execute("SELECT * FROM calories WHERE member_id='#{member_id}' AND day='#{x}' ")
-  calories_date.each do |cals|
-    total_calories << cals['amt_burned']
-    end 
-end 
-total_calories.inject(:+)
-end 
-
-
-puts "This past week, You've lost x lbs and burned #{calories_week(db, person_id)} calories."
-
-
-  # Here are your results. Thus far this week, you've lost x lbs. and have burned x calories. 
-  # Thus far, you've lost x lbs. and have burned x calories. 
 
 
 
