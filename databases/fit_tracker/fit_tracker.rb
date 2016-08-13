@@ -111,6 +111,32 @@ def enter_weight(db, day, current_weight, member_id)
   db.execute("INSERT INTO weight (day, month, current_weight, member_id) VALUES (?, ?, ?, ?)", [day, month, current_weight, member_id])
 end   
 
+#calculate calories month  
+def calories_month(db, member_id)
+total_calories= []
+this_month = Time.now.strftime("%m") 
+calories_date= db.execute("SELECT * FROM calories WHERE member_id='#{member_id}' AND month='#{this_month}' ")
+calories_date.each do |cals|
+  total_calories << cals['amt_burned']
+  end 
+
+total_calories.inject(:+)
+end 
+
+# calculate how many pounds user has lost this month
+def weight_month(db, member_id)
+total_pounds= []
+this_month = Time.now.strftime("%m") 
+updated_weight = db.execute("SELECT * FROM weight WHERE member_id='#{member_id}' AND month='#{this_month}' ")
+updated_weight.each do |pounds|
+  total_pounds << pounds['current_weight']
+  end 
+weight = db.execute("SELECT * FROM members WHERE id='#{member_id}'")
+
+weight_loss= weight[0]['starting_weight'] - total_pounds.min 
+end   
+
+
 # #create test member
 # 6.times {create_member(db, Faker::Name.name, rand(115..300))}
 # member_print = db.execute("SELECT * FROM members")
@@ -140,6 +166,43 @@ person_id = find_id[0]['id']
 
 
 
+
+# calculate total weight loss thus far 
+weight = db.execute("SELECT * FROM members WHERE id='#{person_id}'")
+updated_weight = db.execute("SELECT * FROM weight WHERE member_id='#{person_id}' AND day='#{today}' ")
+weight_loss = weight[0]['starting_weight'] - updated_weight[0]['current_weight']
+
+
+
+#calculate calories burned thus far 
+total_calories= []
+calories_person = db.execute("SELECT * FROM calories WHERE member_id='#{person_id}' ")
+calories_person.each do |cals|
+  total_calories << cals['amt_burned']
+  end 
+  #total calories thus far = total_calories.inject(:+)
+
+
+puts "Here are your results, #{test_name}. Thus far you've lost #{weight_loss} lbs. and have burned #{total_calories.inject(:+)} calories."
+
+
+
+#dates 
+today = Time.now.strftime("%m-%d") #date in mm-dd format
+# now = Date.today
+seven_days_ago = (Date.today - 7).strftime("%m-%d")
+month_ago = (Date.today - 30).strftime("%m-%d")
+#p seven_days_ago
+
+
+
+
+puts "This month, You've lost #{weight_month(db, person_id)} lbs and burned #{calories_month(db, person_id)} calories."
+
+
+
+  # Here are your results. Thus far this week, you've lost x lbs. and have burned x calories. 
+  # Thus far, you've lost x lbs. and have burned x calories. 
 
 
 
