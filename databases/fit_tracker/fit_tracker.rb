@@ -186,8 +186,12 @@ today = Time.now.strftime("%m-%d") #date in mm-dd format
 test_name= "Emily Kris"
 
 #calculate member_id
-find_id= db.execute("SELECT id FROM members WHERE name='#{test_name}'")
-person_id = find_id[0]['id']
+def find_id(db, name)
+find_id = db.execute("SELECT id FROM members WHERE name='#{name}'")
+find_id[0]['id']
+end 
+
+person_id = find_id(db, test_name)
 
 #update current weight for test member
 #enter_weight(db, today, 238, person_id)
@@ -198,26 +202,30 @@ person_id = find_id[0]['id']
 
 
 # calculate total weight loss thus far 
-weight = db.execute("SELECT * FROM members WHERE id='#{person_id}'")
-updated_weight = db.execute("SELECT * FROM weight WHERE member_id='#{person_id}' AND day='#{today}' ")
+def weight_loss(db, today, member_id)  
+weight = db.execute("SELECT * FROM members WHERE id='#{member_id}'")
+updated_weight = db.execute("SELECT * FROM weight WHERE member_id='#{member_id}' AND day='#{today}' ")
 weight_loss = weight[0]['starting_weight'] - updated_weight[0]['current_weight']
+end 
 
 
-
-#calculate calories burned thus far 
+# calculate calories burned thus far 
+def calories_burned(db, member_id)
 total_calories= []
-calories_person = db.execute("SELECT * FROM calories WHERE member_id='#{person_id}' ")
+calories_person = db.execute("SELECT * FROM calories WHERE member_id='#{member_id}' ")
 calories_person.each do |cals|
   total_calories << cals['amt_burned']
   end 
-  #total calories thus far = total_calories.inject(:+)
+total_calories.inject(:+)
+end 
+
 
 
 puts "Here are your results, #{test_name}." 
 puts "This past week, You've lost #{weight_week(db, person_id)} lbs and burned #{calories_week(db, person_id)} calories."
 puts "Thus far this month, You've lost #{weight_month(db, person_id)} lbs and burned #{calories_month(db, person_id)} calories."
-puts "Thus far you've lost #{weight_loss} lbs, and have burned #{total_calories.inject(:+)} calories."
-
+puts "Thus far you've lost #{weight_loss(db, today, person_id)} lbs, and have burned #{calories_burned(db, person_id)} calories."
+#
 
 # Declare group rankings for week, month and thus far. Winner for month thus far. Winner thus far. 
 # declare method to find person_id. loop through all members. 
