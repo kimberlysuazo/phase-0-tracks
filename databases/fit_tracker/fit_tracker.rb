@@ -46,20 +46,6 @@ OUTLINE for user interface:
   Keep at it! Dont forget to check in tomorrow!
 =end 
 
-# TABLES
-
-# members 
-# id, 
-# name,
-# starting weight, 
-# current weight
-
-# calories burned 
-# id, 
-# date, 
-# amt burned, 
-# member_id foreign key 
-
 require 'sqlite3'
 require 'faker'
 
@@ -93,5 +79,26 @@ db.execute(create_table_cmd)
 # create a calories table (if it's not there already)
 db.execute(create_table2)
 
- 
 
+#today = Time.now.strftime("%m-%d")
+
+#create members method
+def create_member(db, name, starting_weight)  
+  #starting_weight = rand(115..300)
+  current_weight = starting_weight
+  db.execute("INSERT INTO members (name, starting_weight, current_weight) VALUES (?, ?, ?)", [name, starting_weight, current_weight])
+end
+
+# #create test member
+# create_member(db, Faker::Name.name, rand(115..300))
+member_print = db.execute("SELECT * FROM members")
+puts member_print
+
+# create calorie entries for members 
+def enter_calories(db, date, amt_burned, member_id)  
+  db.execute("INSERT INTO calories (date, amt_burned, member_id) VALUES (?, ?, ?)", [date, amt_burned, member_id]) 
+end
+
+# create fake calories entry
+# enter_calories(db, '08-12', rand(200..1000), rand(1..5))
+# enter_calories(db, '08-08', rand(200..1000), rand(1..5))
