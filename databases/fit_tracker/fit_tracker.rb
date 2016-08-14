@@ -202,7 +202,8 @@ person_id = find_id(db, test_name)
 
 
 # calculate total weight loss thus far 
-def weight_loss(db, today, member_id)  
+def weight_loss(db, member_id)  
+today = Time.now.strftime("%m-%d")  
 weight = db.execute("SELECT * FROM members WHERE id='#{member_id}'")
 updated_weight = db.execute("SELECT * FROM weight WHERE member_id='#{member_id}' AND day='#{today}' ")
 weight_loss = weight[0]['starting_weight'] - updated_weight[0]['current_weight']
@@ -224,12 +225,38 @@ end
 puts "Here are your results, #{test_name}." 
 puts "This past week, You've lost #{weight_week(db, person_id)} lbs and burned #{calories_week(db, person_id)} calories."
 puts "Thus far this month, You've lost #{weight_month(db, person_id)} lbs and burned #{calories_month(db, person_id)} calories."
-puts "Thus far you've lost #{weight_loss(db, today, person_id)} lbs, and have burned #{calories_burned(db, person_id)} calories."
-#
+puts "Thus far you've lost #{weight_loss(db, person_id)} lbs, and have burned #{calories_burned(db, person_id)} calories."
+
 
 # Declare group rankings for week, month and thus far. Winner for month thus far. Winner thus far. 
-# declare method to find person_id. loop through all members. 
+# def calories_ranking(db, time)
+# case time
+# when "total" then calories_burned
+# when "week" then calories_week
+# else calories_month  
+# end 
 
+ranking= {}
+users = db.execute("SELECT * FROM members")
+  users.each do |user|
+    id =user['id']
+
+    ranking[user['name']] = calories_week(db, id)
+  end
+new_ranking= ranking.sort_by {|name, calories| calories}.reverse.to_h
+new_ranking.each {|name, calories| puts "#{name}: #{calories}"}
+# end 
+
+# calories_ranking(db, "week")
+
+# ranking= {}
+# users = db.execute("SELECT * FROM members")
+# users.each do |user|
+#   person =user['name']
+#   id =user['id']
+ 
+# end    
+#p ranking.sort_by {|name, calories| calories}
 
 
 
