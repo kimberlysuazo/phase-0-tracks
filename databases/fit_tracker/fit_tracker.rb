@@ -194,7 +194,12 @@ end
 person_id = find_id(db, test_name)
 
 #update current weight for test member
-#enter_weight(db, today, 238, person_id)
+# enter_weight(db, today, 150, 1)
+# enter_weight(db, today, 150, 2)
+# enter_weight(db, today, 150, 3)
+# enter_weight(db, today, 150, 4)
+# enter_weight(db, today, 150, 5)
+
 
         ## weight_update= gets.chomp.to_i
 
@@ -237,33 +242,40 @@ puts "Thus far you've lost #{weight_loss(db, person_id)} lbs, and have burned #{
 # end 
 
 def calories_ranking(db, time_frame)
-ranking= {}
-users = db.execute("SELECT * FROM members")
-  users.each do |user|
-    id =user['id']
-    ranking[user['name']] = case time_frame 
-      when "week" then calories_week(db, id)
-      when "month" then calories_month(db, id)
-      else calories_burned(db, id) 
-      end   
-  end
-new_ranking= ranking.sort_by {|name, calories| calories}.reverse.to_h
-new_ranking.each {|name, calories| puts "#{name}: #{calories}"}
+  ranking= {}
+  users = db.execute("SELECT * FROM members")
+    users.each do |user|
+      id =user['id']
+      ranking[user['name']] = case time_frame 
+        when "week" then calories_week(db, id)
+        when "month" then calories_month(db, id)
+        else calories_burned(db, id) 
+        end   
+    end
+  new_ranking= ranking.sort_by {|name, calories| calories}.reverse.to_h
+  new_ranking.each {|name, calories| puts "#{name}: #{calories} calories burned"}
 end 
 
 calories_ranking(db, "week")
 
-# ranking= {}
-# users = db.execute("SELECT * FROM members")
-# users.each do |user|
-#   person =user['name']
-#   id =user['id']
- 
-# end    
-#p ranking.sort_by {|name, calories| calories}
 
+def weight_ranking(db, time_frame)
+  ranking= {}
+  users = db.execute("SELECT * FROM members")
+    users.each do |user|
+      id =user['id']
+      ranking[user['name']] = case time_frame 
+        when "week" then weight_week(db, id)
+        when "month" then weight_month(db, id)
+        else weight_loss(db, id) 
+        end   
+    end
+  new_ranking= ranking.sort_by {|name, pounds| pounds}.reverse.to_h
+  new_ranking.each {|name, pounds| puts "#{name}: #{pounds} lbs lost"}
+end 
 
-
+puts "weigh loss ranking:============================"
+weight_ranking(db, "week")
 
 
 
