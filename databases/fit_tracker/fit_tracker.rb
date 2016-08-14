@@ -111,115 +111,112 @@ def enter_weight(db, day, current_weight, member_id)
   db.execute("INSERT INTO weight (day, month, current_weight, member_id) VALUES (?, ?, ?, ?)", [day, month, current_weight, member_id])
 end   
 
-#calculate member_id
+# calculate member_id
 def find_id(db, name)
-find_id = db.execute("SELECT id FROM members WHERE name='#{name}'")
-find_id[0]['id']
+  find_id = db.execute("SELECT id FROM members WHERE name='#{name}'")
+  find_id[0]['id']
 end 
 
 # This method calculates the weight loss over the past week or over the course of this month. 
 def weight_loss(db, member_id, time_frame)
-total_pounds= []
-t =  DateTime.now
-past_week = ((t-6)..t).map{ |date| date.strftime("%m-%d") }
-this_month = Time.now.strftime("%m") 
-if time_frame == "week"
-  past_week.each do |x|
-    updated_weight = db.execute("SELECT * FROM weight WHERE member_id='#{member_id}' AND day='#{x}' ")
+  total_pounds= []
+  t =  DateTime.now
+  past_week = ((t-6)..t).map{ |date| date.strftime("%m-%d") }
+  this_month = Time.now.strftime("%m") 
+  if time_frame == "week"
+    past_week.each do |x|
+      updated_weight = db.execute("SELECT * FROM weight WHERE member_id='#{member_id}' AND day='#{x}' ")
+      updated_weight.each do |pounds|
+        total_pounds << pounds['current_weight']
+      end 
+    end
+  else 
+    updated_weight = db.execute("SELECT * FROM weight WHERE member_id='#{member_id}' AND month='#{this_month}' ")
     updated_weight.each do |pounds|
       total_pounds << pounds['current_weight']
     end 
-  end
-else 
-  updated_weight = db.execute("SELECT * FROM weight WHERE member_id='#{member_id}' AND month='#{this_month}' ")
-  updated_weight.each do |pounds|
-    total_pounds << pounds['current_weight']
-  end 
-end   
-weight = db.execute("SELECT * FROM members WHERE id='#{member_id}'")
-weight_loss= total_pounds.max - total_pounds.min 
+  end   
+  weight = db.execute("SELECT * FROM members WHERE id='#{member_id}'")
+  weight_loss= total_pounds.max - total_pounds.min 
 end   
 
 # calculate total weight loss thus far 
 def total_weight_loss(db, member_id)  
-today = Time.now.strftime("%m-%d")  
-weight = db.execute("SELECT * FROM members WHERE id='#{member_id}'")
-updated_weight = db.execute("SELECT * FROM weight WHERE member_id='#{member_id}' AND day='#{today}' ")
-weight_loss = weight[0]['starting_weight'] - updated_weight[0]['current_weight']
+  today = Time.now.strftime("%m-%d")  
+  weight = db.execute("SELECT * FROM members WHERE id='#{member_id}'")
+  updated_weight = db.execute("SELECT * FROM weight WHERE member_id='#{member_id}' AND day='#{today}' ")
+  weight_loss = weight[0]['starting_weight'] - updated_weight[0]['current_weight']
 end 
 
 #calculate calories month  
 def calories_month(db, member_id)
-total_calories= []
-this_month = Time.now.strftime("%m") 
-calories_date= db.execute("SELECT * FROM calories WHERE member_id='#{member_id}' AND month='#{this_month}' ")
-calories_date.each do |cals|
-  total_calories << cals['amt_burned']
+  total_calories= []
+  this_month = Time.now.strftime("%m") 
+  calories_date= db.execute("SELECT * FROM calories WHERE member_id='#{member_id}' AND month='#{this_month}' ")
+  calories_date.each do |cals|
+    total_calories << cals['amt_burned']
   end 
-
-total_calories.inject(:+)
+  total_calories.inject(:+)
 end 
 
 # This method calculates the calories burned over the past week. 
 def calories_week(db, member_id)
-total_calories= []
-t =  DateTime.now
-past_week = ((t-6)..t).map{ |date| date.strftime("%m-%d") }
-past_week.each do |x|
-  calories_date= db.execute("SELECT * FROM calories WHERE member_id='#{member_id}' AND day='#{x}' ")
-  calories_date.each do |cals|
-    total_calories << cals['amt_burned']
-    end 
+  total_calories= []
+  t =  DateTime.now
+  past_week = ((t-6)..t).map{ |date| date.strftime("%m-%d") }
+  past_week.each do |x|
+    calories_date= db.execute("SELECT * FROM calories WHERE member_id='#{member_id}' AND day='#{x}' ")
+    calories_date.each do |cals|
+      total_calories << cals['amt_burned']
+      end 
+  end 
+  total_calories.inject(:+)
 end 
-total_calories.inject(:+)
-end 
-
 
 # calculate calories burned thus far 
 def calories_burned(db, member_id)
-total_calories= []
-calories_person = db.execute("SELECT * FROM calories WHERE member_id='#{member_id}' ")
-calories_person.each do |cals|
-  total_calories << cals['amt_burned']
+  total_calories= []
+  calories_person = db.execute("SELECT * FROM calories WHERE member_id='#{member_id}' ")
+  calories_person.each do |cals|
+    total_calories << cals['amt_burned']
   end 
-total_calories.inject(:+)
+  total_calories.inject(:+)
 end 
 
+# gives a printed ranking (descending order) for the calories burned per group member, either for the past week, thus far this month, or total. 
 def calories_ranking(db, time_frame)
   ranking= {}
   users = db.execute("SELECT * FROM members")
-    users.each do |user|
-      id =user['id']
-      ranking[user['name']] = case time_frame 
-        when "week" then calories_week(db, id)
-        when "month" then calories_month(db, id)
-        else calories_burned(db, id) 
-        end   
-    end
+  users.each do |user|
+    id =user['id']
+    ranking[user['name']] = case time_frame 
+      when "week" then calories_week(db, id)
+      when "month" then calories_month(db, id)
+      else calories_burned(db, id) 
+    end   
+  end
   new_ranking= ranking.sort_by {|name, calories| calories}.reverse.to_h
   new_ranking.each {|name, calories| puts "#{name}: #{calories} calories burned"}
 end 
 
-
+# gives a printed ranking (descending order) for the weight loss per group member, either for the past week, thus far this month, or total. 
 def weight_ranking(db, time_frame)
   ranking= {}
   users = db.execute("SELECT * FROM members")
-    users.each do |user|
-      id =user['id']
-      ranking[user['name']] = case time_frame 
-        when "week" then weight_loss(db, id, 'week')
-        when "month" then weight_loss(db, id, 'month')
-        else total_weight_loss(db, id) 
-        end   
-    end
+  users.each do |user|
+    id =user['id']
+    ranking[user['name']] = case time_frame 
+      when "week" then weight_loss(db, id, 'week')
+      when "month" then weight_loss(db, id, 'month')
+      else total_weight_loss(db, id) 
+    end   
+  end
   new_ranking= ranking.sort_by {|name, pounds| pounds}.reverse.to_h
   new_ranking.each {|name, pounds| puts "#{name}: #{pounds} lbs lost"}
 end 
 
-# #create test member
+# #create fake members
 # 6.times {create_member(db, Faker::Name.name, rand(115..300))}
-# member_print = db.execute("SELECT * FROM members")
-# puts member_print
 
 # create fake calories entry
 # enter_calories(db, '08-12', rand(200..1000), rand(1..6))
@@ -231,7 +228,7 @@ end
 # enter_calories(db, '08-03', rand(200..1000), rand(1..6))
 # enter_calories(db, '08-09', rand(200..1000), rand(1..6))
 
-#update current weight for test member
+# update current weight for fake members
 # enter_weight(db, today, 150, 1)
 # enter_weight(db, today, 150, 2)
 # enter_weight(db, today, 150, 3)
@@ -240,6 +237,7 @@ end
 # enter_weight(db, '08-03', 278, 6)
 # enter_weight(db, '08-12', 268, 6)
 # enter_weight(db, today, 267, 6)
+
 
 
 today = Time.now.strftime("%m-%d") #date in mm-dd format
@@ -255,34 +253,18 @@ person_id = find_id(db, test_name)
         ## weight_update= gets.chomp.to_i
 
 
-
-
-
-
-
-
-
 puts "Here are your results, #{test_name}." 
-puts "This past week, You've lost #{weight_week(db, person_id)} lbs and burned #{calories_week(db, person_id)} calories."
-puts "Thus far this month, You've lost #{weight_month(db, person_id)} lbs and burned #{calories_month(db, person_id)} calories."
+puts "This past week, You've lost #{weight_loss(db, person_id, 'week')} lbs and burned #{calories_week(db, person_id)} calories."
+puts "Thus far this month, You've lost #{weight_loss(db, person_id, 'month')} lbs and burned #{calories_month(db, person_id)} calories."
 puts "Thus far you've lost #{total_weight_loss(db, person_id)} lbs, and have burned #{calories_burned(db, person_id)} calories."
 
-puts "TESTING COMBRINED ++++++++++"
-puts "This past week, You've lost #{weight_loss(db, person_id, 'week')} lbs "
-puts "This past month, You've lost #{weight_loss(db, person_id, 'month')} lbs "
-# Declare group rankings for week, month and thus far. Winner for month thus far. Winner thus far. 
-# def calories_ranking(db, time)
-# case time
-# when "total" then calories_burned
-# when "week" then calories_week
-# else calories_month  
-# end 
+
+# Declare group rankings for week, month and thus far. 
+
+
 
 
 calories_ranking(db, "week")
-
-
-
 puts "weigh loss ranking:============================"
 weight_ranking(db, "month")
 weight_ranking(db, "total")
