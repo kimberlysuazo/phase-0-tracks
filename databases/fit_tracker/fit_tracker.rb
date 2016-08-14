@@ -1,49 +1,18 @@
 # The Fit Tracker INTRO
 =begin
 The Fit Tracker is a group-based calorie and weight tracker. It is for groups (family, friends, coworkers) that want to get 
-healthy together with friendly competition. Good for medium-term timeline of more than 2 months. 
+healthy together with friendly competition. Good for time-line of at least 2 months. 
 
 The fit tracker keeps track of calories burned and weight everyday you workout. 
-It tells you how many pounds you've lost and how many calories you've burned so far this week, and so far in the competition. 
-It also ranks the team and declares a winner for week, month and thus far. 
+It tells you how many pounds you've lost and how many calories you've burned over the past week, so far this month, 
+and so far in the competition. 
+If the users chooses to see rankings, it ranks the team for week, month, and competition thus far.  
 
-
-for the purposes of this exercise, we are doing group of 6 coworkers. Will use faker to create names.  
+for the purposes of this exercise, I created a fake group of 6 coworkers. Will use faker to create names.  
 Calling the group of 6 coworkers the Wolves Pack.   
 
 ----- 
-OUTLINE for user interface:  
-  This is the fit tracker for Wolves Pack (group name). 
-  members: names for all members. 
 
-  Are you already part of the group? 
-  IF Yes, 
-    please enter your name. 
-  IF No, 
-    please enter your name so you can join the wolf pack and track your way to healthy. 
-
-
-
-  Hi #{name}. Please enter amount of calories you've burned today. 
-  execute command to insert into calories burned. 
-
-  Please enter your weight. 
-  execute command to UPDATE current weight. 
-
-  Here are your results. Thus far this week, you've lost x lbs. and have burned x calories. 
-  Thus far, you've lost x lbs. and have burned x calories. 
-
-  Here are the results for the wolves pack. 
-  ranking (sorted list) calories burned
-  ranking (sorted list) weight loss 
-
-  Declare winners!:
-  Winner for the week for calories  and weight 
-  winner for the month for calories  and weight 
-  winner thus far for calories  and weight 
-
-  Awesome! Remember, regardless of the results, you're already winning by being on your way to a healthier you. 
-  Keep at it! Dont forget to check in tomorrow!
 =end 
 
 require 'sqlite3'
@@ -145,15 +114,16 @@ end
 # calculate total weight loss thus far 
 def total_weight_loss(db, member_id)  
   total_pounds= []
-  today = Time.now.strftime("%m-%d")  
+  today = Time.now.strftime("%m-%d") 
+  weight = db.execute("SELECT * FROM members WHERE id='#{member_id}'") 
   updated_weight = db.execute("SELECT * FROM weight WHERE member_id='#{member_id}'")
   updated_weight.each do |pounds|
       total_pounds << pounds['current_weight']
     end 
-  weight_loss = total_pounds.max - total_pounds.min 
+  weight_loss = weight[0]['starting_weight'] - total_pounds.min 
 end 
 
-#calculate calories month  
+# calculate calories burned this month  
 def calories_month(db, member_id)
   total_calories= []
   this_month = Time.now.strftime("%m") 
@@ -164,7 +134,7 @@ def calories_month(db, member_id)
   total_calories.inject(:+)
 end 
 
-# This method calculates the calories burned over the past week. 
+# This method calculates the calories burned over the past week (last 7 days). 
 def calories_week(db, member_id)
   total_calories= []
   t =  DateTime.now
@@ -178,7 +148,7 @@ def calories_week(db, member_id)
   total_calories.inject(:+)
 end 
 
-# calculate calories burned thus far 
+# calculate calories burned thus far.
 def calories_burned(db, member_id)
   total_calories= []
   calories_person = db.execute("SELECT * FROM calories WHERE member_id='#{member_id}' ")
@@ -220,38 +190,58 @@ def weight_ranking(db, time_frame)
   new_ranking.each {|name, pounds| puts "#{name}: #{pounds} lbs lost"}
 end 
 
+# Data for fake entries------------------------------------------------------------------  
+# today = Time.now.strftime("%m-%d") 
 # # #create fake members
-#6.times {create_member(db, Faker::Name.name, rand(115..300))}
+ #6.times {create_member(db, Faker::Name.name, rand(115..220))}
 
 # create fake calories entry
-# enter_calories(db, '08-12', rand(200..1000), rand(1..6))
-# enter_calories(db, '08-08', rand(200..1000), rand(1..6))
-# enter_calories(db, '08-10', rand(200..1000), rand(1..6))
-# enter_calories(db, '08-06', rand(200..1000), rand(1..6))
-# enter_calories(db, '08-01', rand(200..1000), rand(1..6))
-# enter_calories(db, '08-02', rand(200..1000), rand(1..6))
-# enter_calories(db, '08-03', rand(200..1000), rand(1..6))
-# enter_calories(db, '08-09', rand(200..1000), rand(1..6))
+ # enter_calories(db, '08-14', rand(200..1000), 1)
+# enter_calories(db, '08-14', rand(200..1000), rand(1..6))
+# enter_calories(db, '08-14', rand(200..1000), rand(1..6))
+# enter_calories(db, '08-14', rand(200..1000), rand(1..6))
+# enter_calories(db, '08-14', rand(200..1000), rand(1..6))
+# enter_calories(db, '08-14', rand(200..1000), rand(1..6))
+# enter_calories(db, '08-14', rand(200..1000), rand(1..6))
+# enter_calories(db, '08-14', rand(200..1000), rand(1..6))
 
 # update current weight for fake members
-# enter_weight(db, today, 150, 1)
-# enter_weight(db, today, 150, 2)
-# enter_weight(db, today, 150, 3)
-# enter_weight(db, today, 150, 4)
-# enter_weight(db, today, 150, 5)
-# enter_weight(db, '08-03', 278, 6)
-# enter_weight(db, '08-12', 268, 6)
-# enter_weight(db, today, 267, 6)
+# enter_weight(db, today, 216, 1)
+# enter_weight(db, today, 210, 2)
+# enter_weight(db, today, 110, 3)
+# enter_weight(db, today, 200, 4)
+# enter_weight(db, today, 190, 5)
+#db.execute("INSERT INTO weight (day, month, current_weight, member_id) VALUES ('07-30', '07', 181, 6)");
+# enter_weight(db, '08-01', 180, 6)
+# enter_weight(db, '08-08', 171, 6)
+# enter_weight(db, '08-13', 165, 6)
+# #enter_weight(db, today, 164, 6)
 
 
 # USER INTERFACE --------------------------------------------------------------------------
+=begin 
+USER INTERFCE OUTLINE
+-List group members
+-Ask user whether he/she is in the team. 
+  -If not, create new member. 
+  -add error handling to ensure yes or no answer.
+-Ask user for name, current weight and calories burned today. 
+-add error handling so that if user says they are in group, they input name currently listed. 
+-Print out results for user. 
+-Ask user if he/she wants to see rankings
+  -IF yes, 
+    -show rankings. 
+-say goodbye to user. 
+=end 
+
+day = Time.now.strftime("%m-%d") #date in mm-dd format
 puts "Welcome! This is the fitness tracker for the Wolves Pack"
 puts "Here are the current group members:"
 members = db.execute("SELECT * FROM members")
 members.each {|user| puts user['name']}
 
 puts "\nAre you already part of the group? Please answer yes or no."
-while true 
+while true
   answer= gets.chomp.downcase
   if answer == "yes"
     puts "Please enter your name EXACTLY as it appears on the list."
@@ -263,6 +253,8 @@ while true
     puts "Please enter your weight."
     weight = gets.chomp.to_i
     create_member(db, user_name, weight)
+    member_id =find_id(db, user_name)
+    enter_weight(db, day, weight, member_id)
     created_member = true 
     break
   else 
@@ -270,14 +262,28 @@ while true
   end 
 end  
 
-
+members = db.execute("SELECT * FROM members") #declare variable again to include newly created members for input error handling
+while !members.to_s.include? user_name 
+  puts "Oops... there doesnt seem to be a match with the name you entered. Are you sure you're part of the group? Yes or no."
+  list_answer= gets.chomp.downcase
+  if list_answer == "no"
+    puts "please enter your full name (First and Last) so you can join the wolf pack and track your way to healthy."  
+    user_name= gets.chomp
+    puts "Please enter your weight."
+    weight = gets.chomp.to_i
+    create_member(db, user_name, weight)
+    member_id =find_id(db, user_name)
+    enter_weight(db, day, weight, member_id)
+    created_member = true 
+    break
+  else 
+    puts "Please enter your name EXACTLY as it appears on the list."
+    user_name= gets.chomp
+  end 
+end   
 
 member_id =find_id(db, user_name) #find the database member_id for current user. 
 
-
- 
-  
-day = Time.now.strftime("%m-%d") #date in mm-dd format
 
 puts "Hi #{user_name}."
 puts "Please enter the amount of calories you've burned today." 
@@ -317,44 +323,8 @@ if see_ranking == "yes"
   puts "WEIGHT LOSS ============================"
   weight_ranking(db, "total")
 end 
-
-
-
-
-
-
-# puts "weigh loss ranking:============================"
-# weight_ranking(db, "month")
-# weight_ranking(db, "total")
-=begin
-
-
-  Hi #{name}. Please enter amount of calories you've burned today. 
-  execute command to insert into calories burned. 
-
-  Please enter your weight. 
-  execute command to UPDATE current weight. 
-
-  Here are your results. Thus far this week, you've lost x lbs. and have burned x calories. 
-  Thus far, you've lost x lbs. and have burned x calories. 
-
-  Here are the results for the wolves pack. 
-  ranking (sorted list) calories burned
-  ranking (sorted list) weight loss 
-
-  Declare winners!:
-  Winner for the week for calories  and weight 
-  winner for the month for calories  and weight 
-  winner thus far for calories  and weight 
-
-  Awesome! Remember, regardless of the results, you're already winning by being on your way to a healthier you. 
-  Keep at it! Dont forget to check in tomorrow!
-=end 
-
-
-
-# # Declare group rankings for week, month and thus far. 
-
+puts "Remember, regardless of the results, you're already winning by being on your way to a healthier you. 
+Keep at it! Dont forget to check in tomorrow!"
 
 
 
