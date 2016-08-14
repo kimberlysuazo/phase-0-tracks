@@ -236,18 +236,22 @@ puts "Thus far you've lost #{weight_loss(db, person_id)} lbs, and have burned #{
 # else calories_month  
 # end 
 
+def calories_ranking(db, time_frame)
 ranking= {}
 users = db.execute("SELECT * FROM members")
   users.each do |user|
     id =user['id']
-
-    ranking[user['name']] = calories_week(db, id)
+    ranking[user['name']] = case time_frame 
+      when "week" then calories_week(db, id)
+      when "month" then calories_month(db, id)
+      else calories_burned(db, id) 
+      end   
   end
 new_ranking= ranking.sort_by {|name, calories| calories}.reverse.to_h
 new_ranking.each {|name, calories| puts "#{name}: #{calories}"}
-# end 
+end 
 
-# calories_ranking(db, "week")
+calories_ranking(db, "week")
 
 # ranking= {}
 # users = db.execute("SELECT * FROM members")
