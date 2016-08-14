@@ -48,7 +48,7 @@ OUTLINE for user interface:
 
 require 'sqlite3'
 require 'faker'
-require 'date'
+
 
 # create SQLite3 database
 db = SQLite3::Database.new("fit_info.db")
@@ -93,6 +93,7 @@ db.execute(create_table2)
 
 #create a weight table to keep track of weight over time 
 db.execute(create_table3)
+
 
 # method that creates members
 def create_member(db, name, starting_weight)  
@@ -239,35 +240,77 @@ end
 # enter_weight(db, today, 267, 6)
 
 
+# USER INTERFACE --------------------------------------------------------------------------
+puts "Welcome! This is the fitness tracker for the Wolves Pack"
+puts "Here are the current group members:"
+members = db.execute("SELECT * FROM members")
+members.each {|user| puts user['name']}
 
-today = Time.now.strftime("%m-%d") #date in mm-dd format
-test_name= "Emily Kris"
+puts "\nAre you already part of the group? Please answer yes or no."
+answer= gets.chomp.downcase
+if answer == "yes"
+  puts "Please enter your name just as it appears on the list."
+  user_name= gets.chomp
+else 
+  puts "please enter your full name (First and Last) so you can join the wolf pack and track your way to healthy."  
+  user_name= gets.chomp
+  puts "Please enter your weight."
+  weight = gets.chomp.to_i
+  create_member(db, user_name, weight)
+end 
+
+day = Time.now.strftime("%m-%d") #date in mm-dd format
+member_id =find_id(db, user_name) #find the database member_id for current user. 
+
+puts "Hi #{user_name}. Please enter amount of calories you've burned today." 
+amt_burned = gets.chomp.to_i
+enter_calories(db, day, amt_burned, member_id)  
+
+puts "Please enter your current weight."
+current_weight= gets.chomp.to_i 
+enter_weight(db, day, current_weight, member_id)
+
+puts "Here are your results, #{user_name}." 
+puts "In the last week, you've lost #{weight_loss(db, member_id, 'week')} lbs and burned #{calories_week(db, member_id)} calories."
+puts "This month, you've lost #{weight_loss(db, member_id, 'month')} lbs and burned #{calories_month(db, member_id)} calories."
+puts "Thus far you've lost #{total_weight_loss(db, member_id)} lbs, and have burned #{calories_burned(db, member_id)} calories."
 
 
-person_id = find_id(db, test_name)
+=begin
 
 
-        
+  Hi #{name}. Please enter amount of calories you've burned today. 
+  execute command to insert into calories burned. 
+
+  Please enter your weight. 
+  execute command to UPDATE current weight. 
+
+  Here are your results. Thus far this week, you've lost x lbs. and have burned x calories. 
+  Thus far, you've lost x lbs. and have burned x calories. 
+
+  Here are the results for the wolves pack. 
+  ranking (sorted list) calories burned
+  ranking (sorted list) weight loss 
+
+  Declare winners!:
+  Winner for the week for calories  and weight 
+  winner for the month for calories  and weight 
+  winner thus far for calories  and weight 
+
+  Awesome! Remember, regardless of the results, you're already winning by being on your way to a healthier you. 
+  Keep at it! Dont forget to check in tomorrow!
+=end 
 
 
-        ## weight_update= gets.chomp.to_i
 
-
-puts "Here are your results, #{test_name}." 
-puts "This past week, You've lost #{weight_loss(db, person_id, 'week')} lbs and burned #{calories_week(db, person_id)} calories."
-puts "Thus far this month, You've lost #{weight_loss(db, person_id, 'month')} lbs and burned #{calories_month(db, person_id)} calories."
-puts "Thus far you've lost #{total_weight_loss(db, person_id)} lbs, and have burned #{calories_burned(db, person_id)} calories."
-
-
-# Declare group rankings for week, month and thus far. 
+# # Declare group rankings for week, month and thus far. 
 
 
 
-
-calories_ranking(db, "week")
-puts "weigh loss ranking:============================"
-weight_ranking(db, "month")
-weight_ranking(db, "total")
+# calories_ranking(db, "week")
+# puts "weigh loss ranking:============================"
+# weight_ranking(db, "month")
+# weight_ranking(db, "total")
 
 
 
