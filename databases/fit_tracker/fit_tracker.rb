@@ -118,8 +118,8 @@ def total_weight_loss(db, member_id)
   weight = db.execute("SELECT * FROM members WHERE id='#{member_id}'") 
   updated_weight = db.execute("SELECT * FROM weight WHERE member_id='#{member_id}'")
   updated_weight.each do |pounds|
-      total_pounds << pounds['current_weight']
-    end 
+    total_pounds << pounds['current_weight']
+  end 
   weight_loss = weight[0]['starting_weight'] - total_pounds.min 
 end 
 
@@ -143,7 +143,7 @@ def calories_week(db, member_id)
     calories_date= db.execute("SELECT * FROM calories WHERE member_id='#{member_id}' AND day='#{x}' ")
     calories_date.each do |cals|
       total_calories << cals['amt_burned']
-      end 
+    end 
   end 
   total_calories.inject(:+)
 end 
@@ -196,14 +196,14 @@ end
  #6.times {create_member(db, Faker::Name.name, rand(115..220))}
 
 # create fake calories entry
- # enter_calories(db, '08-14', rand(200..1000), 1)
-# enter_calories(db, '08-14', rand(200..1000), rand(1..6))
-# enter_calories(db, '08-14', rand(200..1000), rand(1..6))
-# enter_calories(db, '08-14', rand(200..1000), rand(1..6))
-# enter_calories(db, '08-14', rand(200..1000), rand(1..6))
-# enter_calories(db, '08-14', rand(200..1000), rand(1..6))
-# enter_calories(db, '08-14', rand(200..1000), rand(1..6))
-# enter_calories(db, '08-14', rand(200..1000), rand(1..6))
+# enter_calories(db, today, rand(200..1000), 1)
+# enter_calories(db, today, rand(200..1000), 2)
+# enter_calories(db, today, rand(200..1000), 3)
+# enter_calories(db, today, rand(200..1000), 4)
+# enter_calories(db, today, rand(200..1000), 5)
+# enter_calories(db, today, rand(200..1000), 6)
+# enter_calories(db, '08-09', rand(200..1000), rand(1..6))
+# enter_calories(db, '08-11', rand(200..1000), rand(1..6))
 
 # update current weight for fake members
 # enter_weight(db, today, 216, 1)
