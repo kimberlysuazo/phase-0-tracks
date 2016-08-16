@@ -6,9 +6,9 @@ function wooHoo(event){
   newParagraph.appendChild(paraText);
   var body = document.getElementsByTagName('body');
   body[0].appendChild(newParagraph);
-  newParagraph.style.position= "absolute";
-  newParagraph.style.marginTop= "-270px";
-  newParagraph.style.marginLeft= "500px";
+  newParagraph.style.position= "relative";
+  newParagraph.style.marginTop= "-300px";
+  newParagraph.style.marginLeft= "400px";
 }
 
 // this function changes the hat's position
