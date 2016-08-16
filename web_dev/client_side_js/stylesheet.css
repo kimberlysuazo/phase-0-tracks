@@ -1,0 +1,32 @@
+h1 {
+  position: relative;
+  text-align: center;
+  color: red;
+  font-style: italic;
+}
+
+.octopus {
+  position: relative;
+  margin: auto;
+  top: 125px;
+  display: block;
+}
+
+.hat {
+  position: relative;
+  top: -275px;
+  left: 8px;
+  margin: auto;
+  display: block;
+  
+}
+
+.glasses {
+  position: relative;
+  top: -65px;
+  left: 5px;
+  margin: auto;
+  display: block;
+  
+
+}
