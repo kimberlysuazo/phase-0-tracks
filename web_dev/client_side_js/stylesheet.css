@@ -27,6 +27,12 @@ h1 {
   left: 5px;
   margin: auto;
   display: block;
-  
+
+}
+
+p {
+  position: relative;
+  text-align: center;
+  color: red;
 
 }
