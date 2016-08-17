@@ -12,6 +12,18 @@
       $('p').on("mouseover", function() {
         $('button').slideDown();
       });
+      $('#hat').click(function() {
+        $(this).css('color', 'red');
+        $('.hat').hide();
+      });
+      $('#glasses').click(function() {
+        $(this).css('color', 'red');
+        $('.glasses').hide();
+      });
+      $('#glasses').click(function() {
+        $('p, button').hide();
+        $('.instructions').append("Thank you!").css('color', 'red');  
+      });
 
     }); 
     
@@ -20,13 +32,14 @@
 </head>
 <body>
   <h1>Hi! I'm Ocho. I like cowboy hats and <3 glasses</h1>
-  <img class="octopus" src="octopus.png"> 
-  <img class="glasses" src="glasses.png">
-  <img class="hat" src="hat.png">
   <div class="instructions">
     <p>Can you help me do the following? <span>&#9660;</span></p>
       <button id= "hat">Take off my hat</button>
       <button id = "glasses">Take off my glasses</button>
-  </div>  
+  </div> 
+  <img class="octopus" src="octopus.png"> 
+  <img class="glasses" src="glasses.png">
+  <img class="hat" src="hat.png">
+  
 </body>
 </html>
