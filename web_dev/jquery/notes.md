@@ -7,4 +7,10 @@
 4. Start a a simple document where I can test out the smaller things I have been learning. Not exactly a program or project, just testing lines of code to see if Im actually learning how to use jquery. I find that I learn best by doing. a hands-on approach is best for me, so I will stop often to test what Ive just learned. 
 
 
+# Release 1 
+For me the most effective was to watch tutorial videos. Stop them. Try it out and then loop up further documentation on the jquery API docs 
 
+
+
+
+    
