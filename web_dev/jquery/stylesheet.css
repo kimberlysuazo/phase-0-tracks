@@ -28,5 +28,19 @@ h1 {
   margin: auto;
   display: block;
   
+}
 
+.instructions {
+  margin: auto;
+  text-align: center;
+  color: red;
+}
+
+button {
+  display: block;
+  margin: auto;
+}
+
+span {
+  color: black;
 }
