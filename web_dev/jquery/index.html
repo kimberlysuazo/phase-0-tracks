@@ -4,12 +4,29 @@
   <meta charset="UTF-8">
   <title>Ocho the Octopus</title>
   <link href="stylesheet.css" rel="stylesheet" type="text/css">
- 
+  <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script>window.jQuery || document.write('<script src="js/jquery-3.1.0.min.js" type="text/javascript"><\/script>') </script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('button').hide();
+      $('p').on("mouseover", function() {
+        $('button').slideDown();
+      });
+
+    }); 
+    
+
+  </script>
 </head>
 <body>
   <h1>Hi! I'm Ocho. I like cowboy hats and <3 glasses</h1>
   <img class="octopus" src="octopus.png"> 
   <img class="glasses" src="glasses.png">
   <img class="hat" src="hat.png">
+  <div class="instructions">
+    <p>Can you help me do the following? <span>&#9660;</span></p>
+      <button id= "hat">Take off my hat</button>
+      <button id = "glasses">Take off my glasses</button>
+  </div>  
 </body>
 </html>
