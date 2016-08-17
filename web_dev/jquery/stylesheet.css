@@ -4,6 +4,11 @@ h1 {
   color: red;
   font-style: italic;
 }
+/*
+div {
+  vertical-align: top;
+  display: inline-block;
+}*/
 
 .octopus {
   position: relative;
@@ -31,14 +36,18 @@ h1 {
 }
 
 .instructions {
-  margin: auto;
+  display: block;
+  margin-right: 0px;
   text-align: center;
   color: red;
+  position: relative;
+  font-size: 20px;
 }
 
 button {
   display: block;
   margin: auto;
+  position: relative;
 }
 
 span {
