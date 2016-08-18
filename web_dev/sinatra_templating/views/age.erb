@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Age</title>
+</head>
+<body>
+  <h1>Change a student's age here:</h1>
+  <p>Search for the student:</p>
+  <form action="/edit" method="POST">
+      <input type="text" name="name" placeholder="Name">
+      <input type="text" name="campus" placeholder="Campus">
+      <button type="submit">Search</button>
+  </form>
+  <p><%= @age %></p>
+  <p>Edit age:
+  <form action="/edit" method="POST">
+      <input type="text" name="age" placeholder="Age">
+      <button type="submit">Save</button>
+  </form>
+</body>
+</html>
