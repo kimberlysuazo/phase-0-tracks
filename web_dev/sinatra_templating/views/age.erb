@@ -2,19 +2,15 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Edit Age</title>
+  <title>Update Student Age</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h1>Change a student's age here:</h1>
-  <p>Search for the student:</p>
-  <form action="/edit" method="POST">
+  <h1>Update a Student's Age</h1>
+  <p>Please make sure to enter name exactly as it appears in <a href="/">registry</a>, otherwise age will not be updated.</p>
+  <form action="/age" method="POST">
       <input type="text" name="name" placeholder="Name">
       <input type="text" name="campus" placeholder="Campus">
-      <button type="submit">Search</button>
-  </form>
-  <p><%= @age %></p>
-  <p>Edit age:
-  <form action="/edit" method="POST">
       <input type="text" name="age" placeholder="Age">
       <button type="submit">Save</button>
   </form>
