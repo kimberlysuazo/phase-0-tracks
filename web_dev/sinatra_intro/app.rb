@@ -38,6 +38,13 @@ get '/:person_1/loves/:person_2' do
   "#{params[:person_1]} loves #{params[:person_2]}"
 end
 
+get '/:num_1/math/:num_2' do
+  num_1 = params[:num_1]
+  num_2 = params[:num_2]
+  math= num_2.to_i + num_1.to_i
+  "#{params[:num_1]} + #{params[:num_2]}= #{math}"
+end   
+
 # write a GET route that retrieves
 # all student data
 get '/students' do
