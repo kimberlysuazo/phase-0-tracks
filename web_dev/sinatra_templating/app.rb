@@ -24,6 +24,7 @@ post '/students' do
   redirect '/'
 end
 
+#lists all students in specific campus 
 get '/campus/:campus' do 
   @city = params[:campus].upcase
   @campus= db.execute("SELECT * FROM students WHERE campus=?", [@city])
@@ -34,16 +35,18 @@ get '/campus/:campus' do
 
 end   
 
-#EXPERIMENTING WITH UPDATING DATABASE ENTRY
-# get '/edit' do
-#   erb :age
-# end   
 
-# post '/students' do 
-#   p params
-#   @age= db.execute ("SELECT * FROM students WHERE name=?", [params['name']])
-#   # db.execute("UPDATE students SET age=? WHERE name=? AND campus=?", [params['name'], params['campus'], [params['age'].to_i])
-#   erb :age
-# end   
+get '/update/age' do
+  erb :age
+end   
+
+#Updates a student's age
+post '/age' do 
+  age= params['age'].to_i
+  name= params['name']
+  campus= params['campus'].upcase
+  db.execute("UPDATE students SET age=? WHERE name=? AND campus=?", [age, name, campus] )
+  redirect '/'
+end   
 
 # add static resources
