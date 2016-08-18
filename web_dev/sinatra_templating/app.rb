@@ -24,4 +24,13 @@ post '/students' do
   redirect '/'
 end
 
+get '/campus/:campus' do 
+  @city = params[:campus].upcase
+  @campus= db.execute("SELECT * FROM students WHERE campus=?", [@city])
+  if @campus.empty? 
+    @city = "No such campus"
+  end   
+  erb :campus_search
+
+end   
 # add static resources
