@@ -33,4 +33,17 @@ get '/campus/:campus' do
   erb :campus_search
 
 end   
+
+#EXPERIMENTING WITH UPDATING DATABASE ENTRY
+# get '/edit' do
+#   erb :age
+# end   
+
+# post '/students' do 
+#   p params
+#   @age= db.execute ("SELECT * FROM students WHERE name=?", [params['name']])
+#   # db.execute("UPDATE students SET age=? WHERE name=? AND campus=?", [params['name'], params['campus'], [params['age'].to_i])
+#   erb :age
+# end   
+
 # add static resources
